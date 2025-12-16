@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { FiDatabase, FiGlobe, FiLink, FiPlus, FiTrash2, FiEdit, FiRefreshCw, FiCheck } from 'react-icons/fi';
 
 const DataSourcesStep = ({ data, onUpdate }) => {
-    const [sources, setSources] = useState(data.sources || [
+
+
+    const [sources, setSources] = useState([
         {
             id: 1,
             name: 'Customer Database',
@@ -105,7 +107,7 @@ const DataSourcesStep = ({ data, onUpdate }) => {
     };
 
     return (
-        <div>
+        <div className='main-content'>
             <div className="mb-6">
                 <h3 className="font-semibold mb-4">Data Sources Configuration</h3>
                 <p className="text-sm text-gray-600 mb-6">Connect external data sources for real-time access and processing.</p>

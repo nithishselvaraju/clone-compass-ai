@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FiShield, FiCpu, FiDatabase, FiFilter, FiAlertCircle, FiGlobe, FiCheck, FiMessageSquare } from 'react-icons/fi';
 
 const RulesSetupStep = ({ data, onUpdate }) => {
-    const [rules, setRules] = useState(data.rules || {
+    const [rules, setRules] = useState({
         // Model Behavior Settings
         behaviorSettings: {
             temperature: 0.7,
@@ -121,7 +121,7 @@ const RulesSetupStep = ({ data, onUpdate }) => {
     };
 
     return (
-        <div>
+        <div className='main-content'>
             <div className="mb-6">
                 <h3 className="font-semibold text-lg mb-2">Model Behavior Configuration</h3>
                 <p className="text-sm text-gray-600">Configure how the model behaves including guardrails, overthinking restrictions, data access controls, and response formatting.</p>
