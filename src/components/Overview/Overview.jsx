@@ -54,7 +54,7 @@ const Overview = () => {
                         Connect and integrate external data sources to enable real-time access and retrieval of information. This allows the application to seamlessly pull, query, and update data from multiple systems, databases, or APIs, ensuring up-to-date insights and efficient data-driven operations.
                     </p>
 
-                    <button className="card-button">Setup</button>
+                    <button className="card-button" onClick={() => navigate('/data-sources')}>Setup</button>
                 </div>
 
                 <div className="card-container">
@@ -69,7 +69,7 @@ const Overview = () => {
                         Train models with your data to get more relevant results. Leverage powerful pretrained models as a foundation, then fine-tune them to improve performance for your specific tasks, domains, or workflows.
                     </p>
 
-                    <button className="card-button">Try it</button>
+                    <button className="card-button" onClick={() => navigate('/data-training')}>Try it</button>
                 </div>
             </div>
 
@@ -87,7 +87,7 @@ const Overview = () => {
                         Intelligent assistants that work for your business. Automate tasks, streamline operations, and make real-time decisions—freeing your team to focus on growth. From support to workflows, they boost efficiency and drive innovation.
                     </p>
 
-                    <button className="card-button">Build</button>
+                    <button className="card-button" onClick={() => navigate('/workflows')} >Build</button>
                 </div>
 
                 <div className="card-container">
@@ -102,7 +102,7 @@ const Overview = () => {
                         Define and configure guardrails, restrictions, and conditions to control system behavior and enforce compliance. This ensures that operations, data processing, and model outputs adhere to organizational policies and desired constraints
                     </p>
 
-                    <button className="card-button">Setup</button>
+                    <button className="card-button" onClick={() => navigate('/rules-setup')} >Setup</button>
                 </div>
             </div>
 

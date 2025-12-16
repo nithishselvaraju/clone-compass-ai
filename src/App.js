@@ -9,6 +9,7 @@ import WorkflowBuilder from './pages/WorkflowBuilder';
 import DataSources from './pages/DataSources';
 import RulesSetupStep from './components/RulesSetupStep';
 import ModelCatalog from './components/ModelCatalog/ModelCatalog';
+import ModelDetails from './components/ModelCatalog/ModelDetails';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
             <Route path="/workflows" element={<WorkflowBuilder />} />
             <Route path="/data-sources" element={<DataSources />} />
             <Route path="/rules-setup" element={<RulesSetupStep />} />
+            <Route path="/model-details" element={<ModelDetails />} />
             {/* <Route path="/clients" element={<Clients />} /> */}
           </Routes>
 
