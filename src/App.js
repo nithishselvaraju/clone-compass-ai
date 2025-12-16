@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 import Overview from './components/Overview/Overview';
@@ -21,11 +21,15 @@ function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
 
+  const basename =
+    process.env.NODE_ENV === 'production'
+      ? '/clone-compass-ai'
+      : '/';
 
   return (
 
 
-    <Router>
+    <BrowserRouter basename={basename}>
       <div className="app">
         <Header onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)} />
 
@@ -36,6 +40,7 @@ function App() {
             setActiveView={setActiveView}
             collapsed={sidebarCollapsed}
           />
+
           <Routes>
             <Route path="/" element={<Overview />} />
             <Route path="/models" element={<ModelCatalog />} />
@@ -45,9 +50,10 @@ function App() {
             <Route path="/rules-setup" element={<RulesSetupStep />} />
             {/* <Route path="/clients" element={<Clients />} /> */}
           </Routes>
+
         </div>
       </div>
-    </Router>
+    </BrowserRouter >
   );
 }
 
