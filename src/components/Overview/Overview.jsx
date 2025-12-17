@@ -44,11 +44,14 @@ const Overview = () => {
 
             <div className='overview'>
                 <div className="card-container">
-                    <div className="card-icon-wrapper">
-                        <FiDatabase size={20} />
+                    <div className='card-head-title' >
+                        <div className="card-icon-wrapper">
+                            <FiDatabase size={30} />
+                        </div>
+
+                        <h1 className="card-title">Database</h1>
                     </div>
 
-                    <h2 className="card-title">Database</h2>
 
                     <p className="card-description">
                         Connect and integrate external data sources to enable real-time access and retrieval of information. This allows the application to seamlessly pull, query, and update data from multiple systems, databases, or APIs, ensuring up-to-date insights and efficient data-driven operations.
@@ -58,13 +61,14 @@ const Overview = () => {
                 </div>
 
                 <div className="card-container">
-                    <div className="card-icon-wrapper">
-                        <FiSliders size={20} />
+                    <div className='card-head-title' >
+                        <div className="card-icon-wrapper">
+                            <FiSliders size={30} />
 
+                        </div>
+
+                        <h2 className="card-title">Fine Tuning</h2>
                     </div>
-
-                    <h2 className="card-title">Fine Tuning</h2>
-
                     <p className="card-description">
                         Train models with your data to get more relevant results. Leverage powerful pretrained models as a foundation, then fine-tune them to improve performance for your specific tasks, domains, or workflows.
                     </p>
@@ -76,13 +80,14 @@ const Overview = () => {
 
             <div className='overview'>
                 <div className="card-container">
-                    <div className="card-icon-wrapper">
-                        <FiGitMerge size={20} />
-                        {/* <span className="ai-badge">AI</span> */}
+                    <div className='card-head-title' >
+                        <div className="card-icon-wrapper">
+                            <FiGitMerge size={30} />
+                            {/* <span className="ai-badge">AI</span> */}
+                        </div>
+
+                        <h2 className="card-title">Agent Builder</h2>
                     </div>
-
-                    <h2 className="card-title">Agent Builder</h2>
-
                     <p className="card-description">
                         Intelligent assistants that work for your business. Automate tasks, streamline operations, and make real-time decisions—freeing your team to focus on growth. From support to workflows, they boost efficiency and drive innovation.
                     </p>
@@ -91,13 +96,14 @@ const Overview = () => {
                 </div>
 
                 <div className="card-container">
-                    <div className="card-icon-wrapper">
-                        <FiCheck size={20} />
-                        {/* <span className="ai-badge">AI</span> */}
+                    <div className='card-head-title' >
+                        <div className="card-icon-wrapper">
+                            <FiCheck size={30} />
+                            {/* <span className="ai-badge">AI</span> */}
+                        </div>
+
+                        <h2 className="card-title">Rules</h2>
                     </div>
-
-                    <h2 className="card-title">Rules</h2>
-
                     <p className="card-description">
                         Define and configure guardrails, restrictions, and conditions to control system behavior and enforce compliance. This ensures that operations, data processing, and model outputs adhere to organizational policies and desired constraints
                     </p>

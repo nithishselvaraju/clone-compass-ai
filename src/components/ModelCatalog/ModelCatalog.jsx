@@ -22,7 +22,7 @@ const ModelCatalog = ({ showFilters, setShowFilters }) => {
 
     return (
 
-        <div className="main-content catalog">
+        <div className="main-content ">
             <div className="catalog-header">
                 <h1>Model Catalog</h1>
                 <button className="request-model-btn">Request Model</button>
