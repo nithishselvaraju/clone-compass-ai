@@ -68,18 +68,21 @@ const Sidebar = ({ activeView, setActiveView, collapsed }) => {
                                     {!collapsed && expanded[item.label] && (
 
                                         <div className="nav-subitems">
-                                            {item.children.map((child) => (
-                                                <NavLink
-                                                    key={child.path}
-                                                    to={child.path}
-                                                    end={child.path === '/'}
-                                                    className={({ isActive }) =>
-                                                        `nav-subitem ${isActive ? 'active' : ''}`
-                                                    }
-                                                >
-                                                    {child.label}
-                                                </NavLink>
-                                            ))}
+                                            
+                                                {item.children.map((child) => (
+                                                    <NavLink
+                                                        key={child.path}
+                                                        to={child.path}
+                                                        end={child.path === '/'}
+                                                        className={({ isActive }) =>
+                                                            `nav-subitem ${isActive ? 'active' : ''}`
+                                                        }
+                                                    >
+                                                        <div style={{paddingLeft:"33px"}} >
+                                                        {child.label}
+                                                        </div>
+                                                    </NavLink>
+                                                ))}
                                         </div>
 
                                     )}
@@ -102,8 +105,8 @@ const Sidebar = ({ activeView, setActiveView, collapsed }) => {
 
                 {/* Help */}
                 <div className="help-button">
-                    <FiHelpCircle />
-                    {!collapsed && <span>Help</span>}
+                    <FiHelpCircle size={22} color='#ffffff' />
+                    {/* {!collapsed && <p>Help</p>} */}
                 </div>
             </nav>
         </aside>
