@@ -228,14 +228,14 @@
   /* flex: 1;
   padding: 40px;
   overflow-y: auto; */
-  margin-right: auto;
-  margin-left: auto;
+  margin-right:auto ;
+  margin-left:auto ;
   /* padding: 43px; */
   margin-top: 20px;
   background-color: #ffffff;
   margin-bottom: 20px;
   /* overflow-y: auto; */
-  max-width: 1000px;
+  max-width: 950px;
 }
 
 /* Hero Section */
@@ -320,13 +320,27 @@
   background: #02b499;
   color: white;
   border: none;
-  padding: 8px 23px;
+  padding: 5px 40px;
   border-radius: 4px;
   font-size: 15px;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.3s;
 }
+
+.try-btn {
+  background: #ffffff;
+  color: #02b499;
+  border: none;
+  padding: 5px 40px;
+  border-radius: 4px;
+  border: 1px solid #02b499;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
 
 .check-btn:hover {
   background: #00b894;
@@ -420,14 +434,14 @@
 }
 
 .request-model-btn {
-    background: white;
-    border: 1px solid #000000;
-    padding: 11px 24px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s;
+  background: white;
+  border: 1px solid #000000;
+  padding: 11px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 .request-model-btn:hover {
@@ -525,8 +539,8 @@
 }
 
 .model-card h3 {
-    font-size: 20px;
-    font-weight: 700;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .model-description {
@@ -682,9 +696,7 @@
     --foreground: 222.2 84% 4.9%;
   }
 
-  body {
-    @apply  text-gray-900 antialiased;
-  }
+ 
 }
 
 .text-lg {
@@ -711,12 +723,12 @@
 .card-icon-wrapper {
   width: 64px;
   height: 64px;
-  background: #f0f9f7;
+  background: #f4f4f5;
   /* border-radius: 12px; */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
   position: relative;
 }
 
@@ -785,12 +797,40 @@
   /* margin-bottom: 20px; */
 }
 
+.scroll-nav {
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.heighligts {
+  border-top: solid 2px #d0d7df;
+  background-color: #e4fffb;
+  margin: 2px 0px;
+  padding: 10px;
+}
+
+.heighligts p {
+  font-size: small;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 
 /* 
 -------------------------------------------------------------------------------------------------- */
 
 :root {
-  --primary: #4f46e5;
+  --primary: #02b499;
   --primary-light: #eef2ff;
   --secondary: #10b981;
   --background: #f9fafb;
@@ -804,10 +844,6 @@
   --warning: #f59e0b;
   --error: #ef4444;
 }
-
-
-
-
 
 .app-container {
   min-height: 100vh;
@@ -906,7 +942,7 @@
 }
 
 .btn-primary:hover {
-  background: #4338ca;
+  background: #02b499;
   transform: translateY(-1px);
 }
 
@@ -973,7 +1009,7 @@
 .input:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  box-shadow: 0 0 0 3px rgba(79, 198, 40, 0.1);
 }
 
 .select {

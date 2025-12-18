@@ -120,7 +120,7 @@ const DataSourcesStep = ({ data, onUpdate }) => {
                         <h4 className="font-semibold">Connected Sources ({sources.length})</h4>
                         <button
                             onClick={() => setShowAddModal(true)}
-                            className="btn btn-primary"
+                            className="check-btn flex items-center gap-2 "
                         >
                             <FiPlus /> Add Source
                         </button>
@@ -146,15 +146,18 @@ const DataSourcesStep = ({ data, onUpdate }) => {
 
                                 <div className="text-sm text-gray-600 mb-4">
                                     {source.type === 'database' ? (
-                                        <div className="font-mono text-xs truncate">{source.connectionString}</div>
+                                        <div className="font-mono text-xs truncate"><p>{source.connectionString} </p></div>
                                     ) : (
-                                        <div className="font-mono text-xs truncate">{source.endpoint}</div>
+                                        <div className="font-mono text-xs truncate"><p>{source.endpoint} </p></div>
                                     )}
                                 </div>
 
                                 <div className="flex justify-between items-center">
                                     <div className="text-xs text-gray-500">
-                                        Last synced: {source.lastSynced}
+                                        <p>
+                                            Last synced: {source.lastSynced}
+
+                                        </p>
                                     </div>
                                     <div className="flex gap-2">
                                         <button

@@ -45,7 +45,7 @@ const Overview = () => {
             <div className='overview'>
                 <div className="card-container">
                     <div className='card-head-title' >
-                        <div className="card-icon-wrapper">
+                        <div className="card-icon-wrapper mb-3">
                             <FiDatabase size={30} />
                         </div>
 
@@ -62,7 +62,7 @@ const Overview = () => {
 
                 <div className="card-container">
                     <div className='card-head-title' >
-                        <div className="card-icon-wrapper">
+                        <div className="card-icon-wrapper mb-3">
                             <FiSliders size={30} />
 
                         </div>
@@ -81,7 +81,7 @@ const Overview = () => {
             <div className='overview'>
                 <div className="card-container">
                     <div className='card-head-title' >
-                        <div className="card-icon-wrapper">
+                        <div className="card-icon-wrapper mb-3">
                             <FiGitMerge size={30} />
                             {/* <span className="ai-badge">AI</span> */}
                         </div>
@@ -97,7 +97,7 @@ const Overview = () => {
 
                 <div className="card-container">
                     <div className='card-head-title' >
-                        <div className="card-icon-wrapper">
+                        <div className="card-icon-wrapper mb-3">
                             <FiCheck size={30} />
                             {/* <span className="ai-badge">AI</span> */}
                         </div>
