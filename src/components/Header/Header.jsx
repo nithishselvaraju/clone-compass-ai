@@ -12,7 +12,7 @@ const Header = ({ onToggleSidebar }) => (
             </button>
             <div className="logo">
                 <div className="logo-icon" />
-                <span className="logo-text">APEX AI</span>
+                <span className="logo-text">APEX AI 3</span>
             </div>
         </div>
 

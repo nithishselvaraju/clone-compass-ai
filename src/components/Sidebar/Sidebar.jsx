@@ -28,8 +28,8 @@ const Sidebar = ({ activeView, setActiveView, collapsed }) => {
         },
         { path: '/models', icon: <FiTarget />, label: 'Model Catalog' },
         { path: '/data-sources', icon: <FiDatabase />, label: 'Data Sources' },
-        { path: '/data-training', icon: <FiSliders />, label: 'Fine-Tuning' },
-        { path: '/workflows', icon: <FiGitMerge />, label: 'Agent Builder' },
+        { path: '/data-training', icon: <FiSliders />, label: 'Model Training' },
+        // { path: '/workflows', icon: <FiGitMerge />, label: 'Agent Builder' },
         { path: '/rules-setup', icon: <FiCheck />, label: 'Rules setup' },
 
     ];
@@ -68,21 +68,21 @@ const Sidebar = ({ activeView, setActiveView, collapsed }) => {
                                     {!collapsed && expanded[item.label] && (
 
                                         <div className="nav-subitems">
-                                            
-                                                {item.children.map((child) => (
-                                                    <NavLink
-                                                        key={child.path}
-                                                        to={child.path}
-                                                        end={child.path === '/'}
-                                                        className={({ isActive }) =>
-                                                            `nav-subitem ${isActive ? 'active' : ''}`
-                                                        }
-                                                    >
-                                                        <div style={{paddingLeft:"33px"}} >
+
+                                            {item.children.map((child) => (
+                                                <NavLink
+                                                    key={child.path}
+                                                    to={child.path}
+                                                    end={child.path === '/'}
+                                                    className={({ isActive }) =>
+                                                        `nav-subitem ${isActive ? 'active' : ''}`
+                                                    }
+                                                >
+                                                    <div style={{ paddingLeft: "33px" }} >
                                                         {child.label}
-                                                        </div>
-                                                    </NavLink>
-                                                ))}
+                                                    </div>
+                                                </NavLink>
+                                            ))}
                                         </div>
 
                                     )}

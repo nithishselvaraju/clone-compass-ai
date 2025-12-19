@@ -172,7 +172,7 @@
 
 .nav-subitems {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   /* 👈 THIS is the key */
   /* gap: 4px; */
   /* padding-left: 50px; */
@@ -230,8 +230,8 @@
   /* flex: 1;
   padding: 40px;
   overflow-y: auto; */
-  margin-right:auto ;
-  margin-left:auto ;
+  margin-right: auto;
+  margin-left: auto;
   /* padding: 43px; */
   margin-top: 20px;
   background-color: #ffffff;
@@ -243,9 +243,6 @@
 /* Hero Section */
 .hero-section {
   display: flex;
-  /* gap: 20px; */
-  /* margin-bottom: 20px; */
-
 }
 
 .hero-content {
@@ -297,7 +294,67 @@
 
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   position: relative;
+
+
 }
+
+/* .hero-card .slick-dots {
+  bottom: 12px;
+  /* inside the card */
+/* } */
+
+.hero-card .slick-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: auto;
+  text-align: center;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-card .slick-dots li {
+  display: inline-block;
+  margin: 0 4px;
+  padding: 0;
+  width: auto;
+  height: auto;
+}
+
+.hero-card .slick-dots li button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  margin: 0;
+  background: #e0e0e0;
+  border-radius: 50%;
+  border: none;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.hero-card .slick-dots li button:before {
+  content: '';
+  display: none;
+  /* Hide the default content */
+}
+
+.hero-card .slick-dots li.slick-active button {
+  background: #02b499;
+  opacity: 1;
+  width: 20px;
+  /* Make active dot longer */
+  border-radius: 10px;
+  /* Rounded rectangle shape */
+}
+
+.hero-card .slick-dots li button:hover {
+  background: #02b499;
+  opacity: 0.8;
+}
+
 
 .card-icon {
   font-size: 48px;
@@ -316,6 +373,7 @@
   /* color: #555; */
   font-weight: 500;
   margin-bottom: 24px;
+
 }
 
 .check-btn {
@@ -328,6 +386,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: background 0.3s;
+
 }
 
 .try-btn {
@@ -698,7 +757,7 @@
     --foreground: 222.2 84% 4.9%;
   }
 
- 
+
 }
 
 .text-lg {

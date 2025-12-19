@@ -12,10 +12,20 @@ import {
     FiHome
 } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 const Overview = () => {
 
     const navigate = useNavigate();
+
+    const settings = {
+        autoplay: true,
+        autoplaySpeed: 3000,
+        arrows: false,
+        dots: true,
+        infinite: true
+    };
 
     return (
         <div className="main-content" >
@@ -31,14 +41,28 @@ const Overview = () => {
                     <button className="explore-btn" onClick={() => navigate('/models')}>Explore models</button>
                 </div>
 
-                <div className="hero-card">
+                {/* <div className="hero-card">
 
                     <h3>GPT-5</h3>
                     <p>
                         Advanced reasoning and generation for writing, coding, and problem solving.
                     </p>
                     <button className="check-btn">Check it out</button>
-                </div>
+                </div> */}
+
+                <Slider {...settings} className="hero-card">
+                    <div>
+                        <h3>GPT-5</h3>
+                        <p>Advanced model with enhanced understanding, reasoning, and generating human-like responses. it including writing, problem-solving, and conversation.</p>
+                        <button className="check-btn">Check it out</button>
+                    </div>
+
+                    <div>
+                        <h3>GPT-4.5</h3>
+                        <p>GPT-4.5  offers faster performance making it ideal for well-defined tasks and clear, focused prompts.</p>
+                        <button className="check-btn">Check it out</button>
+                    </div>
+                </Slider>
 
             </div>
 
@@ -54,7 +78,7 @@ const Overview = () => {
 
 
                     <p className="card-description">
-                        Connect and integrate external data sources to enable real-time access and retrieval of information. This allows the application to seamlessly pull, query, and update data from multiple systems, databases, or APIs, ensuring up-to-date insights and efficient data-driven operations.
+                        Connect and integrate external data sources to enable real-time access and retrieval of information.This allows to seamlessly pull and update data from multiple systems, databases, or APIs.
                     </p>
 
                     <button className="card-button" onClick={() => navigate('/data-sources')}>Setup</button>
