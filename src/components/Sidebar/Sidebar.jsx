@@ -27,10 +27,18 @@ const Sidebar = ({ activeView, setActiveView, collapsed }) => {
             ],
         },
         { path: '/models', icon: <FiTarget />, label: 'Model Catalog' },
+        {
+            icon: <FiHome />, label: 'Playground',
+            children: [
+                { label: 'Chate', path: '/chate' },
+                { label: 'Realtime', path: '/realtime' },
+            ],
+        },
         { path: '/data-sources', icon: <FiDatabase />, label: 'Data Sources' },
         { path: '/data-training', icon: <FiSliders />, label: 'Model Training' },
         // { path: '/workflows', icon: <FiGitMerge />, label: 'Agent Builder' },
         { path: '/rules-setup', icon: <FiCheck />, label: 'Rules setup' },
+
 
     ];
 

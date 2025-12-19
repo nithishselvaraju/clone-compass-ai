@@ -237,6 +237,7 @@
   background-color: #ffffff;
   margin-bottom: 20px;
   /* overflow-y: auto; */
+  width: 950px;
   max-width: 950px;
 }
 
@@ -286,7 +287,7 @@
 
 /* Hero Card */
 .hero-card {
-  width: 420px;
+  width: 400px;
   background: white;
   padding: 30px;
   border-radius: 0px;
@@ -771,7 +772,7 @@
   padding: 40px;
   max-width: 500px;
   /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); */
-  border: 1px solid #d0d7df;
+  /* border: 1px solid #d0d7df; */
 
 }
 
@@ -869,8 +870,7 @@
 .heighligts {
   border-top: solid 2px #d0d7df;
   background-color: #e4fffb;
-  margin: 2px 0px;
-  padding: 10px;
+    padding: 10px;
 }
 
 .heighligts p {

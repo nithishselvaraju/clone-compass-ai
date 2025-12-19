@@ -10,6 +10,10 @@ import DataSources from './pages/DataSources';
 import RulesSetupStep from './components/RulesSetupStep';
 import ModelCatalog from './components/ModelCatalog/ModelCatalog';
 import ModelDetails from './components/ModelCatalog/ModelDetails';
+import Providers from './pages/Providers';
+import Chate from './pages/playground/Chate';
+import Realtime from './pages/playground/Realtime';
+
 
 
 function App() {
@@ -45,6 +49,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Overview />} />
             <Route path="/models" element={<ModelCatalog />} />
+            <Route path="/chate" element={<Chate/>} />
+            <Route path='/realtime' element={<Realtime/>} />
+            <Route path="/providers" element={<Providers />} />
             <Route path="/data-training" element={<DataTraining />} />
             <Route path="/workflows" element={<WorkflowBuilder />} />
             <Route path="/data-sources" element={<DataSources />} />

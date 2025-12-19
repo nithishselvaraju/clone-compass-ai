@@ -126,8 +126,8 @@ const DataTraining = ({ data, onUpdate }) => {
                         </div> */}
                     </div>
                 </div>
-                <div className='heighligts ' >
-                    <p className="text-sm text-gray-600 mb-6">Upload training data and create Q&A pairs to improve model performance.</p>
+                <div className='heighligts my-4' >
+                    <p className="text-sm text-gray-600 ">Upload training data and create Q&A pairs to improve model performance.</p>
                 </div>
 
                 <div className="flex flex-1  overflow-hidden">

@@ -67,6 +67,76 @@ const Overview = () => {
             </div>
 
             <div className='overview'>
+                <div className="card-container" style={{ border: "1px solid #d0d7df " }} >
+                    <div className='card-head-title' >
+                        <div className="card-icon-wrapper mb-3">
+                            <FiDatabase size={30} />
+                        </div>
+
+                        <h1 className="card-title">Explore AI Capabilities</h1>
+                    </div>
+
+
+                    <p className="card-description">
+                        Connect and integrate external data sources to enable real-time access and retrieval of
+                        information.This allows to seamlessly pull and update data from multiple systems, databases, or APIs
+                    </p>
+
+                    <button className="card-button" onClick={() => navigate('/data-sources')}>Try Playground</button>
+                </div>
+
+                <div className="card-container" style={{ border: "1px solid #d0d7df " }} >
+                    <div className='card-head-title' >
+                        <div className="card-icon-wrapper mb-3">
+                            <FiSliders size={30} />
+
+                        </div>
+
+                        <h2 className="card-title">Seamless Inference</h2>
+                    </div>
+                    <p className="card-description">
+                        Seamless Inference
+                        Efficiently manage batch processing with high-throughput performance, ensuring fast, reliable API execution for every job. Keep your operations running smoothly and your users always connected.                    </p>
+
+                    <button className="card-button" onClick={() => navigate('/data-training')}>Manage Interfase</button>
+                </div>
+            </div>
+            <div className='overview'>
+                <div className="card-container" style={{ borderWidth: "0px 0px 1px 1px", borderStyle: "solid", borderColor: "#d0d7df" }}
+                >
+                    <div className='card-head-title' >
+                        <div className="card-icon-wrapper mb-3">
+                            <FiSliders size={30} />
+
+                        </div>
+
+                        <h2 className="card-title">Customize with Fine-Tuning</h2>
+                    </div>
+                    <p className="card-description">
+                        Train models with your data to get more relevant results. Leverage powerful pretrained models as a foundation, then fine-tune them to improve performance for your specific tasks, domains, or workflows.                    </p>
+
+                    <button className="card-button" onClick={() => navigate('/data-training')}>Explore</button>
+                </div>
+
+                <div className="card-container" style={{ borderWidth: "0px 1px 1px 0px", borderStyle: "solid", borderColor: "#d0d7df" }} >
+                    <div className='card-head-title' >
+                        <div className="card-icon-wrapper mb-3">
+                            <FiDatabase size={30} />
+                        </div>
+
+                        <h1 className="card-title">Database</h1>
+                    </div>
+
+
+                    <p className="card-description">
+                        Connect and integrate external data sources to enable real-time access and retrieval of information.This allows to seamlessly pull and update data from multiple systems, databases, or APIs.
+                    </p>
+
+                    <button className="card-button" onClick={() => navigate('/data-sources')}>Setup</button>
+                </div>
+            </div>
+
+            {/* <div className='overview'>
                 <div className="card-container">
                     <div className='card-head-title' >
                         <div className="card-icon-wrapper mb-3">
@@ -99,15 +169,15 @@ const Overview = () => {
 
                     <button className="card-button" onClick={() => navigate('/data-training')}>Try it</button>
                 </div>
-            </div>
+            </div>  */}
 
-
+            {/* 
             <div className='overview'>
                 <div className="card-container">
                     <div className='card-head-title' >
                         <div className="card-icon-wrapper mb-3">
                             <FiGitMerge size={30} />
-                            {/* <span className="ai-badge">AI</span> */}
+                        <span className="ai-badge">AI</span> 
                         </div>
 
                         <h2 className="card-title">Agent Builder</h2>
@@ -123,7 +193,6 @@ const Overview = () => {
                     <div className='card-head-title' >
                         <div className="card-icon-wrapper mb-3">
                             <FiCheck size={30} />
-                            {/* <span className="ai-badge">AI</span> */}
                         </div>
 
                         <h2 className="card-title">Rules</h2>
@@ -134,7 +203,7 @@ const Overview = () => {
 
                     <button className="card-button" onClick={() => navigate('/rules-setup')} >Setup</button>
                 </div>
-            </div>
+            </div> */}
 
         </div >
     );

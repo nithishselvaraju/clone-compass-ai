@@ -60,7 +60,7 @@ const ModelDetails = () => {
                         </div>
                     </div>
                 </div>
-                <div className='heighligts ' >
+                <div className='heighligts my-4 ' >
                     <p>The model details below will update automatically based on the Region, Compute, and Version filters you select.</p>
                 </div>
 
