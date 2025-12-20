@@ -30,7 +30,7 @@ const Sidebar = ({ activeView, setActiveView, collapsed }) => {
         {
             icon: <FiHome />, label: 'Playground',
             children: [
-                { label: 'Chate', path: '/chate' },
+                { label: 'Chat', path: '/chat' },
                 { label: 'Realtime', path: '/realtime' },
             ],
         },

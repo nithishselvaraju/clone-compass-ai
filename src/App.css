@@ -240,6 +240,22 @@
   width: 950px;
   max-width: 950px;
 }
+.main-content-model {
+  /* flex: 1;
+  padding: 40px;
+  overflow-y: auto; */
+  margin-right: auto;
+  margin-left: auto;
+  /* padding: 43px; */
+  /* background-color: red; */
+  margin-top: 20px;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  /* overflow-y: auto; */
+  width: 980px;
+  max-width: 980px;
+}
+
 
 /* Hero Section */
 .hero-section {
@@ -1112,6 +1128,10 @@
   align-items: center;
   gap: 6px;
 }
+button :hover {
+  background-color:#e8f5f3;
+  
+}
 
 .status-active {
   background: #d1fae5;
@@ -1228,6 +1248,9 @@
 }
 
 /* Utilities */
+.font-md{
+  font-size: 15px;
+}
 .mt-4 {
   margin-top: 16px;
 }

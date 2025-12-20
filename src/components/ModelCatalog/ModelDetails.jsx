@@ -43,9 +43,9 @@ const ModelDetails = () => {
     };
 
     return (
-        <div className="main-content ">
+        <div className="main-content-model flex  gap-16   ">
             {/* Header */}
-            <div style={{ marginLeft: "0px", marginRight: "auto", width: "90%" }} className='flex flex-col h-screen overflow-hidden' >
+            <div className='flex flex-col h-screen overflow-hidden' >
                 <div className="flex gap-2 items-center ">
                     <div className="card-icon-wrapper ">
                         <AiFillStar size={30} />
@@ -60,30 +60,13 @@ const ModelDetails = () => {
                         </div>
                     </div>
                 </div>
-                <div className='heighligts my-4 ' >
+                <div className='heighligts my-4  font-md' >
                     <p>The model details below will update automatically based on the Region, Compute, and Version filters you select.</p>
                 </div>
 
                 <div className="flex flex-1  overflow-hidden">
                     {/* Sidebar Tabs */}
-                    <div className='scroll-nav' >
-                        <nav className="scroll-nav flex flex-col w-48 border-r border-gray-200 overflow-y-auto">
-                            {['Overview', 'Code Example', 'Pricing', 'Compute'].map((tab) => (
-                                <button
-                                    key={tab}
-                                    onClick={() => handleTabClick(tab.toLowerCase())}
-                                    className={`py-2 px-3 text-left font-bold text-sm
-                border-l transition-all duration-300
-                ${activeTab === tab.toLowerCase()
-                                            ? 'border-l-4 border-[#02b499]'
-                                            : 'border-l-4 border-[#d0d7df]'
-                                        }`}
-                                >
-                                    {tab}
-                                </button>
-                            ))}
-                        </nav>
-                    </div>
+
 
 
                     {/* Scrollable content */}
@@ -96,13 +79,13 @@ const ModelDetails = () => {
                         <div ref={(el) => (sectionRefs.current['overview'] = el)}>
                             <h2 className="text-xl font-bold mb-6">Overview</h2>
 
-                            <p className="text-block-800 mb-6">{overview}</p>
+                            <p className=" mb-6 font-md" >{overview}</p>
 
                             <div className="overflow-x-auto mb-6">
                                 <table className="min-w-full">
                                     <tbody className="bg-white">
                                         <tr className="border-b-2 border-gray-200">
-                                            <td className="py-3  font-bold">Input modalities</td>
+                                            <td className="py-3 font-md  font-semibold">Input modalities</td>
                                             <td className="py-3  flex items-center gap-2">
                                                 <div className="flex items-center gap-1 px-3 py-2 bg-[#eff2f3] roundedtext-block-800">
                                                     <CiText size={20} />
@@ -118,7 +101,7 @@ const ModelDetails = () => {
                                             </td>
                                         </tr>
                                         <tr className="border-b-2 border-gray-200">
-                                            <td className="py-3 font-bold">Output modalities</td>
+                                            <td className="py-3 font-md font-semibold">Output modalities</td>
                                             <td className="py-3  flex items-center gap-2">
                                                 <div className="flex items-center gap-1 px-3 py-2 bg-[#eff2f3] roundedtext-block-800">
                                                     <CiText size={20} />
@@ -129,7 +112,7 @@ const ModelDetails = () => {
                                             <td></td>
                                         </tr>
                                         <tr className="border-b-2 border-gray-200">
-                                            <td className="py-3  font-bold">Context length</td>
+                                            <td className="py-3 font-md font-semibold">Context length</td>
                                             <td className="py-3  flex items-center gap-2">
                                                 <div className="flex items-center gap-1 px-3 py-2 bg-[#eff2f3] roundedtext-block-800">
                                                     <CiText size={20} />
@@ -140,7 +123,7 @@ const ModelDetails = () => {
                                             <td></td>
                                         </tr>
                                         <tr className="border-b-2 border-gray-200">
-                                            <td className="py-3  font-bold">Max output tokens</td>
+                                            <td className="py-3 font-mdfont-md font-semibold font-md" >Max output tokens</td>
                                             <td className="py-3  flex items-center gap-2">
                                                 <div className="flex items-center gap-1 px-3 py-2 bg-[#eff2f3] roundedtext-block-800">
                                                     <CiText size={20} />
@@ -160,7 +143,7 @@ const ModelDetails = () => {
                             ref={(el) => (sectionRefs.current['code example'] = el)}
                         >
                             <div>
-                                <h2 className="text-xl font-bold mb-4">Code Example</h2>
+                                <h2 className="text-lg font-semibold mb-4">CODE EXAMPLE</h2>
 
                                 <div className="flex space-x-4 mb-6">
                                     <button className="check-btn">OPENAI</button>
@@ -193,7 +176,7 @@ const ModelDetails = () => {
                             className="bg-white my-4"
                         >
                             <h2 className="text-xl font-bold mb-6">PRICING</h2>
-                            <p className="text-block-700 mb-6">Pricing is based on the number of tokens used.</p>
+                            <p className="font-md mb-6">Pricing is based on the number of tokens used.</p>
 
                             <div className="overflow-x-auto mb-8">
                                 <table className="min-w-full">
@@ -260,9 +243,31 @@ const ModelDetails = () => {
                             className="bg-white rounded-lg shadow-sm  mb-6"
                         >
                             <h2 className="text-xl font-bold mb-4">Compute Settings</h2>
-                            <p className="text-block-600">Compute configuration options will be displayed here.</p>
+                            <p className="font-md">Compute configuration options will be displayed here.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div>
+                {/* <div className='scroll-nav' > */}
+                <div style={{marginTop:"45%"}}  >
+                    <nav className=" flex flex-col w-40  border-gray-200 overflow-y-auto">
+                        {['Overview', 'Code Example', 'Pricing', 'Compute'].map((tab) => (
+                            <button
+                                key={tab}
+                                onClick={() => handleTabClick(tab.toLowerCase())}
+                                className={`py-4 px-3 text-left  text-sm
+                            border-l transition-all duration-300
+                            ${activeTab === tab.toLowerCase()
+                                        ? 'border-l-4 border-[#02b499]'
+                                        : 'border-l-4 border-[#d0d7df]'
+                                    }`}
+                                
+                            >
+                                {tab}
+                            </button>
+                        ))}
+                    </nav>
                 </div>
             </div>
 

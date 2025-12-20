@@ -49,7 +49,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Overview />} />
             <Route path="/models" element={<ModelCatalog />} />
-            <Route path="/chate" element={<Chate/>} />
+            <Route path="/chat" element={<Chate/>} />
             <Route path='/realtime' element={<Realtime/>} />
             <Route path="/providers" element={<Providers />} />
             <Route path="/data-training" element={<DataTraining />} />
