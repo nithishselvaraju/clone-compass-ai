@@ -1,4 +1,4 @@
-import { Box, Button, Typography, TextField, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Divider } from "@mui/material";
+import { Box, Button, Typography, TextField, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Divider, IconButton, Slider, Menu, MenuItem } from "@mui/material";
 import { PiPaintBrushHouseholdLight } from "react-icons/pi";
 import { VscGitCompare } from "react-icons/vsc";
 import { FaBarsProgress } from "react-icons/fa6";
@@ -15,7 +15,9 @@ import deepseek from "../../assets/deepseek.svg"
 import qwen from "../../assets/qwen.svg"
 import cohere from "../../assets/cohere.svg"
 import xai from "../../assets/xai.svg"
-import { useState } from "react";
+import React, { useState } from "react";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+
 
 const gradientText = {
   background: "linear-gradient(to right, #11a77cb9, #0072ff)",
@@ -38,7 +40,21 @@ const Chat = () => {
     { name: "Cohere", logo: cohere },
     { name: "xAI", logo: xai },
   ];
-  const[aiModel,setAiModel]=useState(false)
+  const [aiModel, setAiModel] = useState(false)
+  const [showKey, setShowKey] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const menuOpen = Boolean(anchorEl);
+
+  const handleMenuClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+
 
   return (
     <Box
@@ -63,7 +79,7 @@ const Chat = () => {
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }} >
           {/* Left */}
-          <Box onClick={()=>setAiModel(true)}  sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Box onClick={() => setAiModel(true)} sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <img src={gpt} alt="GPT" width={40} />
             <Typography variant="h6" fontWeight="bold">
               GPT-4o <span style={{ color: "#8a8a8a" }}>(Default)</span>
@@ -79,9 +95,114 @@ const Chat = () => {
             <Typography sx={{ display: "flex", gap: 1, alignItems: "center" }}>
               <VscGitCompare /> Compare mode
             </Typography>
-            <Typography sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+            <Typography onClick={handleMenuClick} sx={{ display: "flex", gap: 1, alignItems: "center" }}>
               <FaBarsProgress /> Configuration
             </Typography>
+            <Menu
+              anchorEl={anchorEl}
+              open={menuOpen}
+              onClose={handleMenuClose}
+              disableAutoFocusItem
+              MenuListProps={{
+                onClick: (e) => e.stopPropagation(), // ⛔ stop auto close
+              }}
+              PaperProps={{
+                sx: {
+                  width: 450,
+                  p: 3,
+                  borderRadius: 2,
+                  boxShadow: "0px 8px 24px rgba(0,0,0,0.12)",
+                },
+              }}
+            >
+              {/* API KEY */}
+              <Box sx={{ mb: 3 }}>
+                {/* <Typography fontSize={13} mb={1}>
+                  API Key
+                </Typography> */}
+
+                <TextField
+                  fullWidth
+                  size="small"
+                  sx={{
+                    backgroundColor: "#f4f5f6",
+                    borderRadius: 1,
+                    "& .MuiOutlinedInput-root": {
+                      "& fieldset": {
+                        border: "none",
+                      },
+                      "&:hover fieldset": {
+                        border: "none",
+                      },
+                      "&.Mui-focused fieldset": {
+                        border: "none",
+                      },
+                    },
+                  }}
+                  placeholder="Enter API Key"
+                  type={showKey ? "text" : "password"}
+                  InputProps={{
+                    endAdornment: (
+                      <IconButton onClick={() => setShowKey(!showKey)}>
+                        {showKey ? <MdVisibilityOff /> : <MdVisibility />}
+                      </IconButton>
+                    ),
+                  }}
+                />
+              </Box>
+
+              {/* Temperature */}
+              <Box sx={{ mb: 3 }}>
+                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                  <Typography fontSize={14}>Temperature</Typography>
+                  <Typography fontSize={14}>1</Typography>
+                </Box>
+                <Slider
+                  defaultValue={1}
+                  min={0}
+                  max={2}
+                  step={0.1}
+                  sx={{ color: "#0a7b6a" }}
+                />
+              </Box>
+
+              {/* Top P */}
+              <Box sx={{ mb: 3 }}>
+                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                  <Typography fontSize={14}>Top P</Typography>
+                  <Typography fontSize={14}>1</Typography>
+                </Box>
+                <Slider
+                  defaultValue={1}
+                  min={0}
+                  max={1}
+                  step={0.05}
+                  sx={{ color: "#0a7b6a" }}
+                />
+              </Box>
+
+              {/* Max Tokens */}
+              <Box sx={{ mb: 2 }}>
+                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                  <Typography fontSize={14}>Max tokens</Typography>
+                  <Typography fontSize={14}>16384</Typography>
+                </Box>
+                <Slider
+                  defaultValue={16384}
+                  min={256}
+                  max={32768}
+                  step={256}
+                  sx={{ color: "#0a7b6a" }}
+                />
+              </Box>
+
+              <Typography fontSize={12} color="gray">
+                Note: Token usage includes both input and output. Very low token limits may prevent the model from generating a response.              </Typography>
+
+              {/* Footer buttons */}
+
+            </Menu>
+
           </Box>
         </div>
       </Box>
@@ -154,7 +275,7 @@ const Chat = () => {
 
       <Dialog
         open={aiModel}
-        maxWidth="lg"
+        maxWidth="md"
         fullWidth
       >
         {/* Header */}
@@ -240,12 +361,97 @@ const Chat = () => {
 
         {/* Footer */}
         <DialogActions sx={{ p: 2 }}>
-          <Button  variant="contained" sx={{backgroundColor:"#e0e0e0",color:"#a6a6ae"}}  onClick={()=>setAiModel(false)} >Cancel</Button>
+          <Button variant="contained" sx={{ backgroundColor: "#e0e0e0", color: "#a6a6ae" }} onClick={() => setAiModel(false)} >Cancel</Button>
           <Button variant="contained" disabled>
             Apply
           </Button>
         </DialogActions>
       </Dialog>
+
+      {/* <Dialog open={true} maxWidth="sm" fullWidth>
+        <DialogTitle fontWeight="bold">
+          Configuration
+        </DialogTitle>
+
+        <Divider />
+
+        <DialogContent sx={{ p: 3 }}>
+          <Box sx={{ mb: 4 }}>
+            <Typography fontSize={14} mb={1}>
+              API Key
+            </Typography>
+
+            <TextField
+              fullWidth
+              placeholder="Enter API Key"
+              type={showKey ? "text" : "password"}
+              InputProps={{
+                endAdornment: (
+                  <IconButton onClick={() => setShowKey(!showKey)}>
+                    {showKey ? <MdVisibilityOff /> : <MdVisibility />}
+                  </IconButton>
+                ),
+              }}
+            />
+          </Box>
+
+          <Box sx={{ mb: 4 }}>
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Typography>Temperature</Typography>
+              <Typography>1</Typography>
+            </Box>
+            <Slider
+              defaultValue={1}
+              min={0}
+              max={2}
+              step={0.1}
+              sx={{ color: "#0a7b6a" }}
+            />
+          </Box>
+
+          <Box sx={{ mb: 4 }}>
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Typography>Top P</Typography>
+              <Typography>1</Typography>
+            </Box>
+            <Slider
+              defaultValue={1}
+              min={0}
+              max={1}
+              step={0.05}
+              sx={{ color: "#0a7b6a" }}
+            />
+          </Box>
+
+          <Box sx={{ mb: 2 }}>
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Typography>Max token</Typography>
+              <Typography>16384</Typography>
+            </Box>
+            <Slider
+              defaultValue={16384}
+              min={256}
+              max={32768}
+              step={256}
+              sx={{ color: "#0a7b6a" }}
+            />
+          </Box>
+
+          <Typography fontSize={12} color="gray">
+            Note: Token usage includes both input and output. Very low token
+            limits may prevent the model from generating a response.
+          </Typography>
+        </DialogContent>
+
+        <Divider />
+
+        <Box sx={{ display: "flex", justifyContent: "flex-end", p: 2 }}>
+          <Button onClick={false}>Cancel</Button>
+          <Button variant="contained" sx={{ ml: 2 }}>
+            Save
+          </Button>
+        </Box>
+      </Dialog> */}
 
     </Box>
   );
