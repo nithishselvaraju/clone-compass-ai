@@ -144,7 +144,7 @@ const ModelCatalog = ({ showFilters, setShowFilters }) => {
                     fullWidth
                     PaperProps={{
                         sx: {
-                            borderRadius: 3,
+                            borderRadius: 0,
                             maxHeight: "90vh",
                         },
                     }}
@@ -178,7 +178,7 @@ const ModelCatalog = ({ showFilters, setShowFilters }) => {
                                 </Typography> */}
                                 <TextField
                                     fullWidth
-                                    placeholder="e.g., GPT-4 Custom"
+                                    placeholder="Model name e.g., GPT-4 Custom"
                                     value={newModel.name}
                                     onChange={(e) => setNewModel({ ...newModel, name: e.target.value })}
                                     sx={inputSx}

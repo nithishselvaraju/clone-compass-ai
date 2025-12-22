@@ -20,7 +20,7 @@ const DataTraining = ({ data, onUpdate }) => {
     const sectionRefs = useRef({});
 
     /* ================= SINGLE SOURCE OF TRUTH ================= */
-    const tabs = ['Q&A Training', 'File Upload', 'Taxonomy'];
+    const tabs = ['Q&A Training', 'File Upload'];
 
     /* ================= SCROLL SPY ================= */
     const handleScroll = () => {
@@ -109,21 +109,14 @@ const DataTraining = ({ data, onUpdate }) => {
         onUpdate?.(updated);
     };
     return (
-        <div className="main-content px-10">
+        <div className="main-content-model flex  gap-16 px-10   ">
             {/* Header */}
             <div style={{ marginLeft: "0px", marginRight: "auto", width: "90%" }} className='flex flex-col h-screen overflow-hidden' >
                 <div className="flex gap-2 items-center ">
-                    {/* <div className="card-icon-wrapper ">
-                        <AiFillStar size={30} />
 
-                        <span className="ai-badge">AI</span>
-                    </div> */}
                     <div>
                         <h1 className="text-2xl font-bold text-black-500">Data Training Configuration</h1>
-                        {/* <div className="flex space-x-3 mt-1">
-                            <button className="check-btn">Subscribe</button>
-                            <button className="try-btn">Try it out</button>
-                        </div> */}
+
                     </div>
                 </div>
                 <div className='heighligts my-4' >
@@ -132,23 +125,7 @@ const DataTraining = ({ data, onUpdate }) => {
 
                 <div className="flex flex-1  overflow-hidden">
                     {/* Sidebar Tabs */}
-                    <div className='scroll-nav' >
-                        <nav className="scroll-nav flex flex-col w-48 border-r border-gray-200 overflow-y-auto">
-                            {tabs.map(tab => (
-                                <button
-                                    key={tab}
-                                    onClick={() => handleTabClick(tab)}
-                                    className={`py-2 px-3 text-left font-bold text-sm border-l-4
-                  ${activeTab === tab
-                                            ? 'border-[#02b499]'
-                                            : 'border-[#d0d7df]'
-                                        }`}
-                                >
-                                    {tab}
-                                </button>
-                            ))}
-                        </nav>
-                    </div>
+
 
 
                     {/* Scrollable content */}
@@ -288,7 +265,7 @@ const DataTraining = ({ data, onUpdate }) => {
                         </div>
 
                         {/* ================= Pricing ================= */}
-                        <div
+                        {/* <div
                             ref={(el) => (sectionRefs.current['Taxonomy'] = el)}
                             className="bg-white my-4"
                         >
@@ -361,10 +338,34 @@ const DataTraining = ({ data, onUpdate }) => {
                                 </div>
                             </div>
 
-                        </div>
-
+                        </div> */}
 
                     </div>
+
+
+                </div>
+            </div>
+
+
+            <div>
+                {/* <div className='scroll-nav' > */}
+                <div style={{ marginTop: "45%" }}  >
+                    <nav className=" flex flex-col w-40  border-gray-200 overflow-y-auto">
+                        {tabs.map(tab => (
+                            <button
+                                key={tab}
+                                onClick={() => handleTabClick(tab)}
+                                className={`py-3 px-3 text-left  text-sm
+                            border-l transition-all duration-300
+                  ${activeTab === tab
+                                        ? 'border-l-4 border-[#02b499]'
+                                        : 'border-l-4 border-[#d0d7df]'
+                                    }`}
+                            >
+                                {tab}
+                            </button>
+                        ))}
+                    </nav>
                 </div>
             </div>
 

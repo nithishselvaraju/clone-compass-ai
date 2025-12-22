@@ -1,5 +1,19 @@
 import React, { useState } from 'react';
 import { FiDatabase, FiGlobe, FiLink, FiPlus, FiTrash2, FiEdit, FiRefreshCw, FiCheck } from 'react-icons/fi';
+import {
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    Box,
+    Typography,
+    TextField,
+    Button,
+    IconButton,
+    MenuItem,
+    Grid,
+    Divider
+} from "@mui/material";
 
 const DataSourcesStep = ({ data, onUpdate }) => {
 
@@ -106,9 +120,68 @@ const DataSourcesStep = ({ data, onUpdate }) => {
         }
     };
 
+    const handleAddModel = () => {
+        if (!newSource.name.trim()) return;
+
+        const source = {
+            id: Date.now(),
+            name: newSource.name,
+            type: newSource.type,
+            status: 'disconnected',
+            connectionString: newSource.connectionString,
+            endpoint: newSource.endpoint,
+            lastSynced: 'Never'
+        };
+
+        const updatedSources = [...sources, source];
+        setSources(updatedSources);
+        onUpdate(updatedSources);
+        setShowAddModal(false);
+        setNewSource({
+            name: '',
+            type: 'database',
+            connectionString: '',
+            endpoint: '',
+            authentication: 'none',
+            apiKey: '',
+            username: '',
+            password: ''
+        });
+
+        // setModels([...models, newModelObj]);
+        // setSelectedModel(newModelObj.id);
+        setShowAddModal(false);
+        // setNewSource({ name: '', provider: '', type: 'API', endpoint: '', apiKey: '' });
+    };
+
+    const inputSx = {
+        "& .MuiOutlinedInput-root": {
+            height: 44,
+            backgroundColor: "#f4f5f6",
+            borderRadius: "0px",
+            border: "none",
+            "& fieldset": {
+                border: "none", // Remove border
+            },
+            "&:hover fieldset": {
+                border: "none", // Remove border on hover
+            },
+            "&.Mui-focused fieldset": {
+                border: "none", // Remove border on focus
+                outline: "none",
+            },
+        },
+        "& .MuiInputBase-input": {
+            fontSize: "14px", // Adjust text size
+            color: "#000000", // Text color
+            padding: "0 12px", // Adjust padding
+        },
+    };
+
+
     return (
         <div className='main-content px-10'>
-            <div className="mb-6">
+            <div className="mb-8">
                 <h3 className="text-2xl font-bold text-black-500 mb-4">Data Sources Configuration</h3>
                 {/* <p className="text-sm text-gray-600 mb-6">Connect external data sources for real-time access and processing.</p> */}
                 <div className='heighligts my-4  font-md' >
@@ -134,8 +207,14 @@ const DataSourcesStep = ({ data, onUpdate }) => {
                             <div key={source.id} className="p-4 border border-gray-200 rounded-lg">
                                 <div className="flex items-center justify-between mb-3">
                                     <div className="flex items-center gap-3">
-                                        <div className={`p-2 rounded-lg ${getStatusColor(source.status)}`}>
-                                            {sourceTypes.find(t => t.id === source.type)?.icon}
+                                        <div className={`card-icon-wrapper mb-3 p-2 rounded-lg `}>
+                                            {(() => {
+                                                const sourceType = sourceTypes.find(t => t.id === source.type);
+                                                if (sourceType?.icon) {
+                                                    return React.cloneElement(sourceType.icon, { size: 30 });
+                                                }
+                                                return null;
+                                            })()}
                                         </div>
                                         <div>
                                             <h5 className="font-semibold">{source.name}</h5>
@@ -149,9 +228,9 @@ const DataSourcesStep = ({ data, onUpdate }) => {
 
                                 <div className="text-sm text-gray-600 mb-4">
                                     {source.type === 'database' ? (
-                                        <div className="font-mono text-xs truncate"><p>{source.connectionString} </p></div>
+                                        <div className="py-2 text-sm text-[#676a6e] truncate"><p>{source.connectionString} </p></div>
                                     ) : (
-                                        <div className="font-mono text-xs truncate"><p>{source.endpoint} </p></div>
+                                        <div className="py-2 text-sm text-[#676a6e] truncate"><p>{source.endpoint} </p></div>
                                     )}
                                 </div>
 
@@ -296,112 +375,222 @@ const DataSourcesStep = ({ data, onUpdate }) => {
                 </div>
             </div>
 
-            {/* Add Source Modal */}
-            {showAddModal && (
-                // <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1001] p-4">
-                    <div className="card w-full max-w-2xl">
-                        <div className="card-header">
-                            <h3 className="card-title">Add New Data Source</h3>
-                            <button
-                                onClick={() => setShowAddModal(false)}
-                                className="text-gray-500 hover:text-gray-700"
-                            >
-                                ✕
-                            </button>
-                        </div>
 
-                        <div className="space-y-6">
-                            <div>
-                                <label className="label">Source Name</label>
-                                <input
-                                    type="text"
-                                    className="input"
+            {showAddModal && (
+                <Dialog
+                    open={showAddModal}
+                    onClose={() => setShowAddModal(false)}
+                    maxWidth="sm"
+                    fullWidth
+                    PaperProps={{
+                        sx: {
+                            borderRadius: 0,
+                            maxHeight: "90vh",
+                        },
+                    }}
+                >
+                    {/* Header */}
+                    <DialogTitle sx={{ px: 3, py: 2 }}>
+                        <Box display="flex" justifyContent="space-between" alignItems="center">
+                            <Typography variant="h6" fontWeight={600}>
+                                Add New Data Source
+                            </Typography>
+                            <IconButton onClick={() => setShowAddModal(false)}>
+                                ✕
+                            </IconButton>
+                        </Box>
+                    </DialogTitle>
+
+                    <Divider />
+
+                    {/* Content */}
+                    <DialogContent sx={{ px: 3, py: 3 }}>
+                        <Typography variant="body2" color="text.secondary" mb={3}>
+                            Add a new data source by providing connection details such as provider, type, endpoint, and access credentials
+                        </Typography>
+
+                        <Box display="flex" flexDirection="column" gap={3}>
+                            {/* Source Name */}
+                            <Box>
+                                <Typography variant="body2" fontWeight={450} fontSize={'15px'} color='#2f2f32' mb={1}>
+                                    Source Name
+                                </Typography>
+                                <TextField
+                                    fullWidth
+                                    placeholder="e.g., Customer Database"
                                     value={newSource.name}
                                     onChange={(e) => setNewSource({ ...newSource, name: e.target.value })}
-                                    placeholder="e.g., Customer Database"
+                                    sx={inputSx}
                                 />
-                            </div>
+                            </Box>
 
-                            <div>
-                                <label className="label">Source Type</label>
-                                <div className="grid grid-cols-5 gap-2">
-                                    {sourceTypes.map((type) => (
-                                        <button
-                                            key={type.id}
-                                            className={`p-3 border rounded-lg flex flex-col items-center gap-2 ${newSource.type === type.id
-                                                ? 'border-primary bg-primary-light'
-                                                : 'border-gray-200'
-                                                }`}
-                                            onClick={() => setNewSource({ ...newSource, type: type.id })}
-                                        >
-                                            <span className={type.color}>{type.icon}</span>
-                                            <span className="text-xs">{type.name}</span>
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
+                            {/* Source Type */}
+                            <Box>
+                                <Typography variant="body2" fontWeight={450} fontSize={'15px'} color='#2f2f32' mb={1}>
+                                    Source Type
+                                </Typography>
+                                <TextField
+                                    select
+                                    fullWidth
+                                    value={newSource.type}
+                                    onChange={(e) => setNewSource({ ...newSource, type: e.target.value })}
+                                    sx={{
+                                        ...inputSx,
+                                        "& .MuiSelect-select": {
+                                            display: "flex",
+                                            alignItems: "center",
+                                            height: "44px !important",
+                                        },
+                                    }}
+                                    SelectProps={{
+                                        displayEmpty: true,
+                                        renderValue: (selected) => {
+                                            if (!selected || selected === "") {
+                                                return <span style={{ color: '#999' }}>Select Source Type</span>;
+                                            }
+                                            return selected;
+                                        },
+                                    }}
+                                >
+                                    <MenuItem value="">Select Source Type</MenuItem>
+                                    <MenuItem value="database">Database</MenuItem>
+                                    <MenuItem value="api">API</MenuItem>
+                                    <MenuItem value="webhook">Webhook</MenuItem>
+                                    <MenuItem value="file">File</MenuItem>
+                                </TextField>
+                            </Box>
 
-                            {newSource.type === 'database' && (
-                                <div>
-                                    <label className="label">Connection String</label>
-                                    <input
-                                        type="text"
-                                        className="input font-mono text-sm"
-                                        value={newSource.connectionString}
-                                        onChange={(e) => setNewSource({ ...newSource, connectionString: e.target.value })}
-                                        placeholder="postgresql://username:password@localhost:5432/database"
-                                    />
-                                </div>
-                            )}
+                            {/* Connection String / Endpoint */}
+                            <Box>
+                                <Typography variant="body2" fontWeight={450} fontSize={'15px'} color='#2f2f32' mb={1}>
+                                    Connection String
+                                </Typography>
+                                <TextField
+                                    fullWidth
+                                    placeholder="postgresql://username:password@localhost:5432/database"
+                                    value={newSource.connectionString}
+                                    onChange={(e) =>
+                                        setNewSource({ ...newSource, connectionString: e.target.value })
+                                    }
+                                    sx={inputSx}
+                                />
+                            </Box>
 
-                            {(newSource.type === 'api' || newSource.type === 'webhook') && (
-                                <div>
-                                    <label className="label">Endpoint URL</label>
-                                    <input
-                                        type="text"
-                                        className="input"
-                                        value={newSource.endpoint}
-                                        onChange={(e) => setNewSource({ ...newSource, endpoint: e.target.value })}
-                                        placeholder="https://api.example.com/v1/endpoint"
-                                    />
-                                </div>
-                            )}
+                            {/* Provider */}
+                            <Box>
+                                <Typography variant="body2" fontWeight={450} fontSize={'15px'} color='#2f2f32' mb={1}>
+                                    Provider
+                                </Typography>
+                                <TextField
+                                    fullWidth
+                                    placeholder="e.g., PostgreSQL, MySQL, MongoDB..."
+                                    value={newSource.provider}
+                                    onChange={(e) =>
+                                        setNewSource({ ...newSource, provider: e.target.value })
+                                    }
+                                    sx={inputSx}
+                                />
+                            </Box>
 
-                            <div>
-                                <label className="label">Authentication</label>
-                                <select
-                                    className="select"
+                            {/* Authentication */}
+                            <Box>
+                                <Typography variant="body2" fontWeight={450} fontSize={'15px'} color='#2f2f32' mb={1}>
+                                    Authentication
+                                </Typography>
+                                <TextField
+                                    select
+                                    fullWidth
                                     value={newSource.authentication}
                                     onChange={(e) => setNewSource({ ...newSource, authentication: e.target.value })}
+                                    sx={{
+                                        ...inputSx,
+                                        "& .MuiSelect-select": {
+                                            display: "flex",
+                                            alignItems: "center",
+                                            height: "44px !important",
+                                        },
+                                    }}
+                                    SelectProps={{
+                                        displayEmpty: true,
+                                        renderValue: (selected) => {
+                                            if (!selected || selected === "") {
+                                                return <span style={{ color: '#999' }}>Select Authentication</span>;
+                                            }
+                                            return selected;
+                                        },
+                                    }}
                                 >
-                                    <option value="none">No Authentication</option>
-                                    <option value="apiKey">API Key</option>
-                                    <option value="basic">Basic Auth</option>
-                                    <option value="oauth">OAuth 2.0</option>
-                                    <option value="bearer">Bearer Token</option>
-                                </select>
-                            </div>
+                                    <MenuItem value="">Select Authentication</MenuItem>
+                                    <MenuItem value="none">No Authentication</MenuItem>
+                                    <MenuItem value="basic">Basic Auth</MenuItem>
+                                    <MenuItem value="apiKey">API Key</MenuItem>
+                                    <MenuItem value="oauth">OAuth 2.0</MenuItem>
+                                </TextField>
+                            </Box>
 
-                            <div className="flex gap-4">
-                                <button
-                                    onClick={handleAddSource}
-                                    className="btn btn-primary flex-1"
-                                >
-                                    <FiCheck /> Connect Source
-                                </button>
-                                <button
-                                    onClick={() => setShowAddModal(false)}
-                                    className="btn btn-secondary flex-1"
-                                >
-                                    Cancel
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                        </Box>
+                    </DialogContent>
+
+                    <Divider />
+
+                    {/* Footer */}
+                    <DialogActions sx={{ px: 3, py: 2, mt: 2 }}>
+                        <Box sx={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            alignItems: "center",
+                            gap: 3,
+                            width: "100%"
+                        }}>
+                            <Typography
+                                onClick={() => setShowAddModal(false)}
+                                sx={{
+                                    backgroundColor: "#f4f5f6",
+                                    textTransform: "none",
+                                    fontWeight: 500,
+                                    fontSize: "14px",
+                                    padding: "6px 20px",
+                                    color: " #2a1c2b",
+                                    borderRadius: "4px",
+                                    boxShadow: "none",
+
+                                    "&:hover": {
+                                        backgroundColor: "#b6b9b8ff",
+                                        boxShadow: "none",
+                                    },
+                                }}
+                            >
+                                Cancel
+                            </Typography>
+
+                            <Button
+                                onClick={handleAddSource}
+                                variant="contained"
+                                sx={{
+                                    backgroundColor: "#f4f5f6",
+                                    textTransform: "none",
+                                    fontWeight: 500,
+                                    fontSize: "14px",
+                                    padding: "6px 20px",
+                                    color: " #2a1c2b",
+                                    borderRadius: "4px",
+                                    boxShadow: "none",
+                                    minWidth: "120px",
+                                    "&:hover": {
+                                        backgroundColor: "#b6b9b8ff",
+                                        boxShadow: "none",
+                                    },
+                                }}
+                            >
+                                Connect Source
+                            </Button>
+                        </Box>
+                    </DialogActions>
+                </Dialog>
             )}
-        </div>
+
+        </div >
     );
 };
 
