@@ -47,7 +47,7 @@ const DataSourcesStep = ({ data, onUpdate }) => {
         { id: 'database', name: 'Database', icon: <FiDatabase />, color: 'text-blue-600' },
         { id: 'api', name: 'API', icon: <FiGlobe />, color: 'text-green-600' },
         { id: 'webhook', name: 'Webhook', icon: <FiLink />, color: 'text-purple-600' },
-        { id: 'file', name: 'File System', icon: <FiDatabase />, color: 'text-yellow-600' },
+        // { id: 'file', name: 'File System', icon: <FiDatabase />, color: 'text-yellow-600' },
         { id: 'queue', name: 'Message Queue', icon: <FiLink />, color: 'text-red-600' },
     ];
 
@@ -298,7 +298,8 @@ const DataSourcesStep = ({ data, onUpdate }) => {
 
             {/* Add Source Modal */}
             {showAddModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                // <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1001] p-4">
                     <div className="card w-full max-w-2xl">
                         <div className="card-header">
                             <h3 className="card-title">Add New Data Source</h3>
