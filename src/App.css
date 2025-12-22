@@ -2,8 +2,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+  font-family: "Roboto", Times, serif;
 
+}
 
 
 /* body {
@@ -240,6 +241,7 @@
   width: 950px;
   max-width: 950px;
 }
+
 .main-content-model {
   /* flex: 1;
   padding: 40px;
@@ -886,7 +888,7 @@
 .heighligts {
   border-top: solid 2px #d0d7df;
   background-color: #e4fffb;
-    padding: 10px;
+  padding: 10px;
 }
 
 .heighligts p {
@@ -1128,9 +1130,10 @@
   align-items: center;
   gap: 6px;
 }
+
 button :hover {
-  background-color:#e8f5f3;
-  
+  background-color: #e8f5f3;
+
 }
 
 .status-active {
@@ -1248,9 +1251,10 @@ button :hover {
 }
 
 /* Utilities */
-.font-md{
+.font-md {
   font-size: 15px;
 }
+
 .mt-4 {
   margin-top: 16px;
 }
