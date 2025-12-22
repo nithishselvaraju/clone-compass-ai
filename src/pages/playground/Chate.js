@@ -109,7 +109,8 @@ const Chat = () => {
               PaperProps={{
                 sx: {
                   width: 450,
-                  p: 3,
+                  px: 4,
+                  py: 3,
                   borderRadius: 2,
                   boxShadow: "0px 8px 24px rgba(0,0,0,0.12)",
                 },
@@ -152,7 +153,7 @@ const Chat = () => {
               </Box>
 
               {/* Temperature */}
-              <Box sx={{ mb: 3 }}>
+              <Box sx={{ mb: 1 }}>
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                   <Typography fontSize={14}>Temperature</Typography>
                   <Typography fontSize={14}>1</Typography>
@@ -167,7 +168,7 @@ const Chat = () => {
               </Box>
 
               {/* Top P */}
-              <Box sx={{ mb: 3 }}>
+              <Box sx={{ mb: 1 }}>
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                   <Typography fontSize={14}>Top P</Typography>
                   <Typography fontSize={14}>1</Typography>
@@ -182,7 +183,7 @@ const Chat = () => {
               </Box>
 
               {/* Max Tokens */}
-              <Box sx={{ mb: 2 }}>
+              <Box sx={{ mb: 1 }}>
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                   <Typography fontSize={14}>Max tokens</Typography>
                   <Typography fontSize={14}>16384</Typography>
@@ -286,15 +287,17 @@ const Chat = () => {
         <Divider />
 
         {/* Body */}
-        <Box sx={{ display: "flex", height: "400px" }}>
+        <Box sx={{ display: "flex", height: "250px" }}>
 
           {/* Left Sidebar */}
-          <Box
-            sx={{
-              width: 220,
-              borderRight: "1px solid #e0e0e0",
-              p: 2
-            }}
+          <Box className="chat-pop-left"
+          // sx={{
+          //   width: 220,
+          //   borderRight: "1px solid #e0e0e0",
+          //   backgroundColor: "#F4F5F6",
+          //   p: 2,
+          //   gap: 2
+          // }}
           >
             {[
               { step: "01", label: "Provider", active: true },
@@ -309,7 +312,9 @@ const Chat = () => {
                   alignItems: "center",
                   mb: 2,
                   color: item.active ? "#00bfa5" : "#666",
-                  fontWeight: item.active ? "bold" : "normal"
+                  fontWeight: item.active ? "bold" : "normal",
+
+
                 }}
               >
                 <Typography sx={{ width: 30 }}>
@@ -334,10 +339,12 @@ const Chat = () => {
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  gap: 2,
+                  gap: 1,
                   mb: 3,
                   px: 6,
-                  py: 2,
+                  // py: 2,
+                  pt: 1,       // padding-top
+                  pb: 0,
                   borderRadius: 2,
                   cursor: "pointer",
                   "&:hover": {
@@ -350,14 +357,14 @@ const Chat = () => {
                   alt={provider.name}
                   style={{ width: 40, height: 40, objectFit: "contain" }}
                 />
-                <Typography fontWeight="bold" variant="h6">{provider.name}</Typography>
+                <Typography fontWeight="bold" fontSize="18px" variant="h6">{provider.name}</Typography>
               </Box>
             ))}
 
           </Box>
         </Box>
 
-        <Divider />
+
 
         {/* Footer */}
         <DialogActions sx={{ p: 2 }}>
