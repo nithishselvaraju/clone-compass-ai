@@ -3,6 +3,9 @@ import { AiFillAccountBook, AiFillAndroid, AiFillBell, AiFillStar } from 'react-
 import { CiImageOn, CiText } from 'react-icons/ci';
 import { FiCheck, FiDatabase } from 'react-icons/fi';
 import { useLocation } from 'react-router-dom';
+import TextIcon from "../../assets/svg-cons/text.svg";
+import ConLengthIcon from "../../assets/svg-cons/con-length.svg";
+import OptokenIcon from "../../assets/svg-cons/optoken.svg";
 
 const ModelDetails = () => {
     const [activeTab, setActiveTab] = useState('overview');
@@ -12,6 +15,10 @@ const ModelDetails = () => {
     const scrollContainerRef = useRef(null);
     const sectionRefs = useRef({});
     const tabs = ['overview', 'code example', 'pricing', 'compute'];
+
+    // ICONS SVG
+    const TEXT_ICON_SRC = "data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e...";
+
 
     // Scroll spy
     const handleScroll = () => {
@@ -43,14 +50,14 @@ const ModelDetails = () => {
     };
 
     return (
-        <div className="main-content-model flex  gap-16   ">
+        <div className="main-content-model flex  gap-16 px-10   ">
             {/* Header */}
             <div className='flex flex-col h-screen overflow-hidden' >
                 <div className="flex gap-2 items-center ">
                     <div className="card-icon-wrapper ">
                         <AiFillStar size={30} />
 
-                        {/* <span className="ai-badge">AI</span> */}
+
                     </div>
                     <div>
                         <h1 className="text-2xl font-bold text-black-500">{modelName}</h1>
@@ -65,11 +72,6 @@ const ModelDetails = () => {
                 </div>
 
                 <div className="flex flex-1  overflow-hidden">
-                    {/* Sidebar Tabs */}
-
-
-
-                    {/* Scrollable content */}
                     <div
                         ref={scrollContainerRef}
                         onScroll={handleScroll}
@@ -88,7 +90,12 @@ const ModelDetails = () => {
                                             <td className="py-3 font-md  font-semibold">Input modalities</td>
                                             <td className="py-3  flex items-center gap-2">
                                                 <div className="flex items-center gap-1 px-3 py-2 bg-[#eff2f3] roundedtext-block-800">
-                                                    <CiText size={20} />
+                                                    {/* <CiText size={20} /> */}
+                                                    <img
+                                                        src={TextIcon}
+                                                        alt="text icon"
+                                                        className="w-5 h-5"
+                                                    />
                                                 </div>
                                                 Text
                                             </td>
@@ -104,7 +111,11 @@ const ModelDetails = () => {
                                             <td className="py-3 font-md font-semibold">Output modalities</td>
                                             <td className="py-3  flex items-center gap-2">
                                                 <div className="flex items-center gap-1 px-3 py-2 bg-[#eff2f3] roundedtext-block-800">
-                                                    <CiText size={20} />
+                                                    <img
+                                                        src={TextIcon}
+                                                        alt="text icon"
+                                                        className="w-5 h-5"
+                                                    />
                                                 </div>
                                                 Text
                                             </td>
@@ -115,7 +126,11 @@ const ModelDetails = () => {
                                             <td className="py-3 font-md font-semibold">Context length</td>
                                             <td className="py-3  flex items-center gap-2">
                                                 <div className="flex items-center gap-1 px-3 py-2 bg-[#eff2f3] roundedtext-block-800">
-                                                    <CiText size={20} />
+                                                    <img
+                                                        src={ConLengthIcon}
+                                                        alt="text icon"
+                                                        className="w-5 h-5"
+                                                    />
                                                 </div>
                                                 128,000
                                             </td>
@@ -126,7 +141,11 @@ const ModelDetails = () => {
                                             <td className="py-3 font-mdfont-md font-semibold font-md" >Max output tokens</td>
                                             <td className="py-3  flex items-center gap-2">
                                                 <div className="flex items-center gap-1 px-3 py-2 bg-[#eff2f3] roundedtext-block-800">
-                                                    <CiText size={20} />
+                                                    <img
+                                                        src={OptokenIcon}
+                                                        alt="text icon"
+                                                        className="w-5 h-5"
+                                                    />
                                                 </div>
                                                 16,384
                                             </td>
@@ -190,7 +209,7 @@ const ModelDetails = () => {
 
                                     <tbody>
                                         <tr className="border-b-2" style={{ display: "flex", justifyContent: "space-between", borderColor: '#e6e8eb' }} >
-                                            <td className=" py-2 text-sm text-[#676a6e]">Per 1M tokens</td>
+                                            <td className=" py-2 text-sm text-[#676a6e]">Per 1M tokens&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td className=" py-2 text-lg font-bold">$2.50</td>
                                             <td className=" py-2 text-lg font-bold">$10.00</td>
                                         </tr>
@@ -213,24 +232,18 @@ const ModelDetails = () => {
 
                                         </tr>
                                     </thead>
-                                    <thead>
-                                        <tr className="border-b-2" style={{ borderColor: '#e6e8eb' }} >
-                                            <div className="flex justify-between items-center my-4">
-                                                {/* Left Column */}
-                                                <div>
-                                                    <p className="text-lg font-bold text-block-700">Web Search</p>
-                                                    <p className="text-sm text-[#676a6e]">Per 1K transactions</p>
-                                                </div>
 
-                                                {/* Right Column */}
-                                                <div className="text-lg font-bold w-90 bg-red text-right">
-                                                    $18.00</div>
-                                                <div></div>
-                                            </div>
+
+                                    <thead>
+                                        <tr className="border-b-2 flex justify-between items-center" style={{ borderColor: '#e6e8eb' }}>
+                                            <td className="text-lg font-bold text-block-700">
+                                                Web Search<br />
+                                                <span className="text-sm text-[#676a6e]">Per 1K transactions</span>
+                                            </td>
+                                            <td className="text-lg font-bold">$18.00</td>
+                                            <td className="text-lg font-bold">$18.00</td>
                                         </tr>
                                     </thead>
-
-
 
                                 </table>
                             </div>
@@ -242,7 +255,7 @@ const ModelDetails = () => {
                             ref={(el) => (sectionRefs.current['compute'] = el)}
                             className="bg-white rounded-lg shadow-sm  mb-6"
                         >
-                            <h2 className="text-xl font-bold mb-4">Compute Settings</h2>
+                            <h2 className="text-xl font-bold mb-4">COMPUTE</h2>
                             <p className="font-md">Compute configuration options will be displayed here.</p>
                         </div>
                     </div>
@@ -250,7 +263,7 @@ const ModelDetails = () => {
             </div>
             <div>
                 {/* <div className='scroll-nav' > */}
-                <div style={{marginTop:"45%"}}  >
+                <div style={{ marginTop: "45%" }}  >
                     <nav className=" flex flex-col w-40  border-gray-200 overflow-y-auto">
                         {['Overview', 'Code Example', 'Pricing', 'Compute'].map((tab) => (
                             <button
@@ -262,7 +275,7 @@ const ModelDetails = () => {
                                         ? 'border-l-4 border-[#02b499]'
                                         : 'border-l-4 border-[#d0d7df]'
                                     }`}
-                                
+
                             >
                                 {tab}
                             </button>

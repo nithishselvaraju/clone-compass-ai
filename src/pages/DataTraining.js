@@ -109,7 +109,7 @@ const DataTraining = ({ data, onUpdate }) => {
         onUpdate?.(updated);
     };
     return (
-        <div className="main-content ">
+        <div className="main-content px-10">
             {/* Header */}
             <div style={{ marginLeft: "0px", marginRight: "auto", width: "90%" }} className='flex flex-col h-screen overflow-hidden' >
                 <div className="flex gap-2 items-center ">

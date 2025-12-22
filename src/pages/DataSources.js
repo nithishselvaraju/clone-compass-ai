@@ -107,10 +107,13 @@ const DataSourcesStep = ({ data, onUpdate }) => {
     };
 
     return (
-        <div className='main-content'>
+        <div className='main-content px-10'>
             <div className="mb-6">
-                <h3 className="font-semibold mb-4">Data Sources Configuration</h3>
-                <p className="text-sm text-gray-600 mb-6">Connect external data sources for real-time access and processing.</p>
+                <h3 className="text-2xl font-bold text-black-500 mb-4">Data Sources Configuration</h3>
+                {/* <p className="text-sm text-gray-600 mb-6">Connect external data sources for real-time access and processing.</p> */}
+                <div className='heighligts my-4  font-md' >
+                    <p>Connect external data sources for real-time access and processing.</p>
+                </div>
             </div>
 
             <div className="grid grid-cols-2 gap-6">
