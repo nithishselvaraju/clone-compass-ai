@@ -13,6 +13,7 @@ import ModelDetails from './components/ModelCatalog/ModelDetails';
 import Providers from './pages/Providers';
 import Chate from './pages/playground/Chate';
 import Realtime from './pages/playground/Realtime';
+import SettingsTabs from './pages/SettingsTabs';
 import ModelTrainingTab from './components/ModelTrainingTabs/ModelTrainingTab';
 
 
@@ -23,6 +24,8 @@ function App() {
 
   const [activeView, setActiveView] = useState('overview');
   const [showFilters, setShowFilters] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+
 
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
@@ -31,6 +34,10 @@ function App() {
     process.env.NODE_ENV === 'production'
       ? '/clone-compass-ai'
       : '/';
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
 
@@ -50,6 +57,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Overview />} />
             <Route path="/models" element={<ModelCatalog />} />
+            <Route path="/settings" element={<SettingsTabs />} />
             <Route path="/chat" element={<Chate />} />
             <Route path='/realtime' element={<Realtime />} />
             <Route path="/providers" element={<Providers />} />
