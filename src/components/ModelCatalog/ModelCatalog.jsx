@@ -14,7 +14,8 @@ import {
     IconButton,
     MenuItem,
     Grid,
-    Divider
+    Divider,
+    Menu
 } from "@mui/material";
 
 
@@ -99,6 +100,18 @@ const ModelCatalog = ({ showFilters, setShowFilters }) => {
             padding: "0 12px", // Adjust padding
         },
     };
+    const [anchorEl, setAnchorEl] = useState(null);
+
+    const menuOpen = Boolean(anchorEl);
+
+    const handleMenuClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+    };
+
 
     return (
 
@@ -110,9 +123,123 @@ const ModelCatalog = ({ showFilters, setShowFilters }) => {
             </div>
 
             <div className="catalog-controls">
-                <button className="filters-btn" onClick={() => setShowFilters(true)}>
-                    ⚙️ Filters
-                </button>
+                <div>
+
+                    <button
+                        className="filters-btn"
+                        onClick={(e) => setAnchorEl(e.currentTarget)}
+                    >
+                        ⚙️ Filters
+                    </button>
+                    <Menu
+                        anchorEl={anchorEl}
+                        open={menuOpen}
+                        onClose={() => setAnchorEl(null)}
+                        disableAutoFocusItem
+                        anchorOrigin={{
+                            vertical: "bottom",
+                            horizontal: "right",
+                        }}
+                        transformOrigin={{
+                            vertical: "top",
+                            horizontal: "right",
+                        }}
+                        MenuListProps={{
+                            onClick: (e) => e.stopPropagation(), // ⛔ prevent auto close
+                        }}
+
+                        PaperProps={{
+                            sx: {
+                                width: 380,
+                                py: 2,
+                                maxHeight: "80vh",
+                                overflowY: "auto",
+                                borderRadius: 2,
+                                boxShadow: "0px 8px 24px rgba(0,0,0,0.12)",
+                                ml: 34,
+                                mt:-8
+
+                            },
+                        }}
+                    >
+                        {/* YOUR FILTER CONTENT HERE */}
+
+                        <Box sx={{ height: "400px", overflowY: "auto",px:4 }} >
+                            {/* PROVIDERS */}
+                            <div className="filter-section">
+                                <h4>Providers (11)</h4>
+                                <Grid container spacing={2}>
+                                    <Grid item size={6} ><label><input type="checkbox" /> OpenAI</label></Grid>
+                                    <Grid item size={6}><label><input type="checkbox" /> Inception</label></Grid>
+                                    <Grid item size={6}><label><input type="checkbox" /> Meta</label></Grid>
+                                    <Grid item size={6}><label><input type="checkbox" /> Mistral AI</label></Grid>
+                                </Grid>
+                                <div className="see-all">▼ See All (7)</div>
+                            </div>
+
+                            {/* MODALITY */}
+                            <div className="filter-section">
+                                <h4>Modality (4)</h4>
+                                <Grid container spacing={2}>
+                                    <Grid item size={6}><label><input type="checkbox" /> Text</label></Grid>
+                                    <Grid item size={6}><label><input type="checkbox" /> Image</label></Grid>
+                                    <Grid item size={6}><label><input type="checkbox" /> Audio</label></Grid>
+                                    <Grid item size={6}><label><input type="checkbox" /> Embedding</label></Grid>
+                                </Grid>
+                            </div>
+
+                            {/* TASK */}
+                            <div className="filter-section">
+                                <h4>Task (9)</h4>
+                                <Grid container spacing={2}>
+                                    <Grid item size={6}><label><input type="checkbox" /> Text Generation</label></Grid>
+                                    <Grid item size={6}><label><input type="checkbox" /> Speech to Text</label></Grid>
+                                    <Grid item size={6}><label><input type="checkbox" /> Audio Generation</label></Grid>
+                                    <Grid item size={6}><label><input type="checkbox" /> Image Generation</label></Grid>
+                                </Grid>
+                                <div className="see-all">▼ See All (5)</div>
+                            </div>
+
+                            {/* REGION */}
+                            <div className="filter-section">
+                                <h4>Region (4)</h4>
+                                <Grid container spacing={2}>
+                                    <Grid item size={6}><label><input type="checkbox" /> US</label></Grid>
+                                    <Grid item size={6}><label><input type="checkbox" /> Europe</label></Grid>
+                                    <Grid item size={6}><label><input type="checkbox" /> Asia</label></Grid>
+                                    <Grid item size={6}><label><input type="checkbox" /> Global</label></Grid>
+                                </Grid>
+                            </div>
+
+                            <div className="filter-section">
+                                <h4>Compute  (4)</h4>
+                                <Grid container spacing={2}>
+                                    <Grid item size={6}><label><input type="checkbox" /> Azure</label></Grid>
+                                    <Grid item size={6}><label><input type="checkbox" /> Qualcomm</label></Grid>
+                                    <Grid item size={6}><label><input type="checkbox" /> Celebras</label></Grid>
+                                    <Grid item size={6}><label><input type="checkbox" /> Core42</label></Grid>
+                                </Grid>
+                            </div>
+                            <div className="filter-section">
+                                <h4>Mode  (2)</h4>
+                                <Grid container spacing={2}>
+                                    <Grid item size={6}><label><input type="radio" /> Preview</label></Grid>
+                                    <Grid item size={6}><label><input type="radio" /> Production</label></Grid>
+
+                                </Grid>
+                            </div>
+                        </Box>
+                        {/* FOOTER */}
+                        <Grid container justifyContent="space-between" sx={{ mt: 3,borderTop:"solid 1px #8f8f8fff",px:4,pt:1 }}>
+                            <Grid item>
+                                <button className="clear-btn">Clear all</button>
+                            </Grid>
+                            <Grid item>
+                                <button className="apply-btn">Apply</button>
+                            </Grid>
+                        </Grid>
+                    </Menu>
+                </div>
 
                 <input
                     className="search-box"
@@ -238,7 +365,7 @@ const ModelCatalog = ({ showFilters, setShowFilters }) => {
 
 
                             <Grid container spacing={2}>
-                                <Grid item xs={6}>
+                                <Grid item size={6}>
                                     {/* <Typography variant="body2" fontWeight={500} mb={1}>
                                         Cost
                                     </Typography> */}
@@ -273,7 +400,7 @@ const ModelCatalog = ({ showFilters, setShowFilters }) => {
                                     </TextField>
                                 </Grid>
 
-                                <Grid item xs={6}>
+                                <Grid item size={6}>
                                     <TextField
                                         select
                                         fullWidth
