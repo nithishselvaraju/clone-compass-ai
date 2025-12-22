@@ -1367,7 +1367,7 @@ button :hover {
   flex-direction: column;
 }
 
-.realtime-header {
+/* .realtime-header {
   position: sticky;
   top: 0px;
   z-index: 999;
@@ -1380,6 +1380,18 @@ button :hover {
   justify-content: space-between;
   -webkit-box-align: center;
   align-items: center;
+} */
+
+.realtime-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  /* border-bottom: 1px solid #e0e0e0; */
 }
 
 .realtime-cofig {
