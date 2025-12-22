@@ -83,8 +83,8 @@ const SettingsTabs = () => {
 
               {/* DETAILS */}
               <Box sx={{ flex: 1 }}>
-                <ProfileRow label="Full Name" value="Nithish" />
-                <ProfileRow label="Email" value="nithishsarvan@gmail.com" />
+                <ProfileRow label="Full Name" value="User" />
+                <ProfileRow label="Email" value="user@apex.ai" />
 
                 {/* Editable Organization Row */}
                 <Box
@@ -93,7 +93,7 @@ const SettingsTabs = () => {
                     gridTemplateColumns: "200px 1fr",
                     mb: 2,
                     alignItems: "center",
-                    justifyContent:"center",
+                    justifyContent: "center",
                     gap: 1,
                   }}
                 >

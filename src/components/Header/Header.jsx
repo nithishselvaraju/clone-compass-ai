@@ -11,6 +11,7 @@ import { MdOutlineAccountTree, MdOutlineSettings, MdOutlineLogout } from "react-
 import { FiKey } from "react-icons/fi";
 import { TbReportAnalytics } from "react-icons/tb";
 import { RiFileList3Line } from "react-icons/ri";
+import { TbGridDots } from "react-icons/tb";
 
 const Header = ({ onToggleSidebar }) => {
     const [workspaceAnchor, setWorkspaceAnchor] = useState(null);
@@ -44,7 +45,7 @@ const Header = ({ onToggleSidebar }) => {
                     onClick={(e) => setWorkspaceAnchor(e.currentTarget)}
                 >
 
-                    <BsPersonWorkspace size={22} />
+                    <TbGridDots size={22} />
                     <Typography variant="p" sx={{ fontWeight: 600 }} >WorkSpace</Typography>
                 </button>
 
@@ -114,12 +115,12 @@ const Header = ({ onToggleSidebar }) => {
                     </Grid>
                 </Menu>
 
-                {/* PROFILE */}
+
                 <button
                     className="user-menu"
                     onClick={(e) => setProfileAnchor(e.currentTarget)}
                 >
-                    <Typography variant="p" sx={{ fontWeight: 600 }} >Nithish</Typography>
+                    <Typography variant="p" sx={{ fontWeight: 600 }} >User</Typography>
 
                     <span style={{ color: "#00c853", fontSize: "12px" }}>▼</span>
 
@@ -141,7 +142,7 @@ const Header = ({ onToggleSidebar }) => {
                     }}
                 >
                     <Box sx={{ p: 2 }} >
-                        <Typography variant="p" sx={{ fontWeight: 600 }} >nithishsarvan@gmail.com</Typography>
+                        <Typography variant="body1" sx={{ fontWeight: 600, mb: 2 }} >user@apex.ai</Typography>
                         <div
                             className="profile-item"
                             onClick={() => {
@@ -171,6 +172,8 @@ const Header = ({ onToggleSidebar }) => {
                         Privacy Policy · Terms of Service
                     </p>
                 </Menu>
+
+
             </div>
         </header>
     );
