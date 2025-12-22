@@ -37,7 +37,7 @@ const Sidebar = ({ activeView, setActiveView, collapsed }) => {
         { path: '/data-sources', icon: <FiDatabase />, label: 'Data Sources' },
         { path: '/data-training', icon: <FiSliders />, label: 'Model Training' },
         // { path: '/workflows', icon: <FiGitMerge />, label: 'Agent Builder' },
-        { path: '/rules-setup', icon: <FiCheck />, label: 'Rules setup' },
+        // { path: '/rules-setup', icon: <FiCheck />, label: 'Rules setup' },
 
 
     ];

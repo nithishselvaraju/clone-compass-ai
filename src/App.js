@@ -14,6 +14,7 @@ import Providers from './pages/Providers';
 import Chate from './pages/playground/Chate';
 import Realtime from './pages/playground/Realtime';
 import SettingsTabs from './pages/SettingsTabs';
+import ModelTrainingTab from './components/ModelTrainingTabs/ModelTrainingTab';
 
 
 
@@ -60,7 +61,7 @@ function App() {
             <Route path="/chat" element={<Chate />} />
             <Route path='/realtime' element={<Realtime />} />
             <Route path="/providers" element={<Providers />} />
-            <Route path="/data-training" element={<DataTraining />} />
+            <Route path="/data-training" element={<ModelTrainingTab />} />
             <Route path="/workflows" element={<WorkflowBuilder />} />
             <Route path="/data-sources" element={<DataSources />} />
             <Route path="/rules-setup" element={<RulesSetupStep />} />

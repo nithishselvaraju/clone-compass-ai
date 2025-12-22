@@ -51,13 +51,12 @@ const ModelDetails = () => {
 
     return (
         <div className="main-content-model flex  gap-16 px-10   ">
-            {/* Header */}
+
+
             <div className='flex flex-col h-screen overflow-hidden' >
                 <div className="flex gap-2 items-center ">
                     <div className="card-icon-wrapper ">
                         <AiFillStar size={30} />
-
-
                     </div>
                     <div>
                         <h1 className="text-2xl font-bold text-black-500">{modelName}</h1>
@@ -261,6 +260,7 @@ const ModelDetails = () => {
                     </div>
                 </div>
             </div>
+
             <div>
                 {/* <div className='scroll-nav' > */}
                 <div style={{ marginTop: "45%" }}  >
@@ -269,7 +269,7 @@ const ModelDetails = () => {
                             <button
                                 key={tab}
                                 onClick={() => handleTabClick(tab.toLowerCase())}
-                                className={`py-4 px-3 text-left  text-sm
+                                className={`py-3 px-3 text-left  text-sm
                             border-l transition-all duration-300
                             ${activeTab === tab.toLowerCase()
                                         ? 'border-l-4 border-[#02b499]'
