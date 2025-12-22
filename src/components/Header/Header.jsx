@@ -1,5 +1,8 @@
 import React from 'react';
 import { FiMenu } from 'react-icons/fi';
+import apexLogo from '../../assets/apex-logo.svg';
+import ApexLogo from '../ApexLog.js'
+
 const Header = ({ onToggleSidebar }) => (
     <header className="header">
         <div className="header-left">
@@ -11,7 +14,12 @@ const Header = ({ onToggleSidebar }) => (
                 <FiMenu size={20} />
             </button>
             <div className="logo">
-                <div className="logo-icon" />
+
+                {/* <div>Logo path: {apexLogo}</div> */}
+                {/* <svg width="45" height="32" fill="#070707">
+                    <use xlinkHref={`${apexLogo}#icon`} />
+                </svg> */}
+                <ApexLogo />
                 <span className="logo-text">APEX AI 3</span>
             </div>
         </div>

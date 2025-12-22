@@ -109,9 +109,10 @@ const DataTraining = ({ data, onUpdate }) => {
         onUpdate?.(updated);
     };
     return (
-        <div className="main-content-model flex  gap-16 px-10   ">
+        <div className="main-content">
             {/* Header */}
             <div style={{ marginLeft: "0px", marginRight: "auto", width: "90%" }} className='flex flex-col h-screen overflow-hidden' >
+
                 <div className="flex gap-2 items-center ">
 
                     <div>
@@ -345,10 +346,10 @@ const DataTraining = ({ data, onUpdate }) => {
 
                 </div>
             </div>
-
+            {/* 
 
             <div>
-                {/* <div className='scroll-nav' > */}
+              
                 <div style={{ marginTop: "45%" }}  >
                     <nav className=" flex flex-col w-40  border-gray-200 overflow-y-auto">
                         {tabs.map(tab => (
@@ -367,7 +368,7 @@ const DataTraining = ({ data, onUpdate }) => {
                         ))}
                     </nav>
                 </div>
-            </div>
+            </div> */}
 
         </div>
     );

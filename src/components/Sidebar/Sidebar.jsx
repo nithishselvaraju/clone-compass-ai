@@ -13,6 +13,8 @@ import {
     FiHome
 } from 'react-icons/fi';
 
+import { MdOutlineChatBubbleOutline } from "react-icons/md";
+
 const Sidebar = ({ activeView, setActiveView, collapsed }) => {
     const [expanded, setExpanded] = useState(true);
 
@@ -27,15 +29,16 @@ const Sidebar = ({ activeView, setActiveView, collapsed }) => {
             ],
         },
         { path: '/models', icon: <FiTarget />, label: 'Model Catalog' },
-        {
-            icon: <FiHome />, label: 'Playground',
-            children: [
-                { label: 'Chat', path: '/chat' },
-                { label: 'Realtime', path: '/realtime' },
-            ],
-        },
+
         { path: '/data-sources', icon: <FiDatabase />, label: 'Data Sources' },
         { path: '/data-training', icon: <FiSliders />, label: 'Model Training' },
+        {
+            icon: <MdOutlineChatBubbleOutline />, label: 'Playground',
+            children: [
+                { label: 'Standard', path: '/chat' },
+                { label: 'Pre-Trained', path: '/realtime' },
+            ],
+        },
         // { path: '/workflows', icon: <FiGitMerge />, label: 'Agent Builder' },
         // { path: '/rules-setup', icon: <FiCheck />, label: 'Rules setup' },
 

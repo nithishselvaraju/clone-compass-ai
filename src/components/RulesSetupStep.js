@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FiShield, FiCpu, FiDatabase, FiFilter, FiAlertCircle, FiGlobe, FiCheck, FiMessageSquare } from 'react-icons/fi';
 
-const RulesSetupStep = ({ data, onUpdate }) => {
+const RulesSetupStep = ({ data }) => {
     const [rules, setRules] = useState({
         // Model Behavior Settings
         behaviorSettings: {
@@ -70,7 +70,7 @@ const RulesSetupStep = ({ data, onUpdate }) => {
         );
         const updatedRules = { ...rules, guardrails: updatedGuardrails };
         setRules(updatedRules);
-        onUpdate(updatedRules);
+        // onUpdate(updatedRules);
     };
 
     const handleToggleDataAccess = (id) => {
@@ -79,35 +79,35 @@ const RulesSetupStep = ({ data, onUpdate }) => {
         );
         const updatedRules = { ...rules, dataAccess: updatedDataAccess };
         setRules(updatedRules);
-        onUpdate(updatedRules);
+        // onUpdate(updatedRules);
     };
 
     const handleBehaviorChange = (key, value) => {
         const updatedBehavior = { ...rules.behaviorSettings, [key]: parseFloat(value) || 0 };
         const updatedRules = { ...rules, behaviorSettings: updatedBehavior };
         setRules(updatedRules);
-        onUpdate(updatedRules);
+        // onUpdate(updatedRules);
     };
 
     const handleOverthinkingChange = (key, value) => {
         const updatedOverthinking = { ...rules.overthinkingRestrictions, [key]: key === 'enableChainOfThought' || key === 'allowSelfCorrection' ? value === 'true' : parseFloat(value) || 0 };
         const updatedRules = { ...rules, overthinkingRestrictions: updatedOverthinking };
         setRules(updatedRules);
-        onUpdate(updatedRules);
+        // onUpdate(updatedRules);
     };
 
     const handleResponseControlChange = (key, value) => {
         const updatedControls = { ...rules.responseControls, [key]: key === 'requireCitations' || key === 'allowMultimodal' || key === 'structuredOutput' ? value === 'true' : value };
         const updatedRules = { ...rules, responseControls: updatedControls };
         setRules(updatedRules);
-        onUpdate(updatedRules);
+        // onUpdate(updatedRules);
     };
 
     const handleDefaultResponseChange = (key, value) => {
         const updatedResponses = { ...rules.defaultResponses, [key]: value };
         const updatedRules = { ...rules, defaultResponses: updatedResponses };
         setRules(updatedRules);
-        onUpdate(updatedRules);
+        // onUpdate(updatedRules);
     };
 
     const getScopeColor = (scope) => {
@@ -122,339 +122,300 @@ const RulesSetupStep = ({ data, onUpdate }) => {
 
     return (
         <div className='main-content'>
-            <div className="mb-6">
-                <h3 className="font-semibold text-lg mb-2">Model Behavior Configuration</h3>
-                <p className="text-sm text-gray-600">Configure how the model behaves including guardrails, overthinking restrictions, data access controls, and response formatting.</p>
-            </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Left Column: Model Behavior & Guardrails */}
-                <div className="space-y-8">
-                    {/* Model Behavior Settings */}
-                    {/* <div className="border border-gray-200 rounded-lg p-6">
-                        <div className="flex items-center gap-2 mb-4">
-                            <FiCpu className="text-indigo-500" />
-                            <h4 className="font-semibold">Model Parameters</h4>
-                        </div>
+            <div style={{ marginLeft: "0px", marginRight: "auto", width: "90%" }} className='flex flex-col h-screen' >
 
-                        <div className="space-y-4">
-                            <div>
-                                <label className="label flex justify-between">
-                                    <span>Temperature</span>
-                                    <span className="text-gray-500">{rules.behaviorSettings.temperature}</span>
-                                </label>
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="1"
-                                    step="0.1"
-                                    value={rules.behaviorSettings.temperature}
-                                    onChange={(e) => handleBehaviorChange('temperature', e.target.value)}
-                                    className="w-full"
-                                />
-                                <div className="text-xs text-gray-500 mt-1">
-                                    Controls randomness: Lower = more focused, Higher = more creative
-                                </div>
-                            </div>
+                <div className="flex gap-2 items-center ">
 
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label className="label">Max Tokens</label>
-                                    <input
-                                        type="number"
-                                        value={rules.behaviorSettings.maxTokens}
-                                        onChange={(e) => handleBehaviorChange('maxTokens', e.target.value)}
-                                        className="input"
-                                        min="100"
-                                        max="4096"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">Top P</label>
-                                    <input
-                                        type="number"
-                                        step="0.1"
-                                        min="0"
-                                        max="1"
-                                        value={rules.behaviorSettings.topP}
-                                        onChange={(e) => handleBehaviorChange('topP', e.target.value)}
-                                        className="input"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
+                    <div>
+                        <h1 className="text-2xl font-bold text-black-500">Model Behavior Configuration</h1>
 
-                    {/* Guardrails */}
-                    <div className="border border-gray-200 rounded-lg p-6">
-                        <div className="flex items-center gap-2 mb-4">
-                            <FiShield className="text-green-500" />
-                            <h4 className="font-semibold">Safety Guardrails</h4>
-                        </div>
-
-                        <div className="space-y-3">
-                            {rules.guardrails.map((guardrail) => (
-                                <div key={guardrail.id} className="flex items-center justify-between p-3 hover:bg-gray-50 rounded">
-                                    <div className="flex items-center gap-3">
-                                        <input
-                                            type="checkbox"
-                                            checked={guardrail.enabled}
-                                            onChange={() => handleToggleGuardrail(guardrail.id)}
-                                            className="w-4 h-4 rounded text-green-500"
-                                        />
-                                        <div>
-                                            <div className="font-medium">{guardrail.name}</div>
-                                            <div className="text-xs text-gray-500">{guardrail.description}</div>
-                                        </div>
-                                    </div>
-                                    {guardrail.enabled && <FiCheck className="text-green-500" />}
-                                </div>
-                            ))}
-                        </div>
                     </div>
+                </div>
+                <div className='heighligts my-4' >
+                    <p className="text-sm text-gray-600 ">Configure how the model behaves including guardrails, overthinking restrictions, data access controls, and response formatting..</p>
+                </div>
 
-                    {/* Default Responses */}
-                    <div className="border border-gray-200 rounded-lg p-6">
-                        <div className="flex items-center gap-2 mb-4">
-                            <FiMessageSquare className="text-purple-500" />
-                            <h4 className="font-semibold">Default Responses</h4>
-                            <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">When model has no access or must follow rules</span>
+
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* Left Column: Model Behavior & Guardrails */}
+                    <div className="space-y-8">
+
+
+                        {/* Guardrails */}
+                        <div className="border border-gray-200 rounded-lg p-6">
+                            <div className="flex items-center gap-2 mb-4">
+                                <FiShield className="text-green-500" />
+                                <h4 className="font-semibold">Safety Guardrails</h4>
+                            </div>
+
+                            <div className="space-y-3">
+                                {rules.guardrails.map((guardrail) => (
+                                    <div key={guardrail.id} className="flex items-center justify-between p-3 hover:bg-gray-50 rounded">
+                                        <div className="flex items-center gap-3">
+                                            <input
+                                                type="checkbox"
+                                                checked={guardrail.enabled}
+                                                onChange={() => handleToggleGuardrail(guardrail.id)}
+                                                className="custom-checkbox"
+                                            />
+                                            <div>
+                                                <div className="font-medium">{guardrail.name}</div>
+                                                <div className="text-xs text-gray-500">{guardrail.description}</div>
+                                            </div>
+                                        </div>
+                                        {guardrail.enabled && <FiCheck className="text-green-500" />}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
 
-                        <div className="space-y-4">
-                            <div>
-                                <label className="label">No Access Response</label>
-                                <textarea
-                                    value={rules.defaultResponses.noAccessResponse}
-                                    onChange={(e) => handleDefaultResponseChange('noAccessResponse', e.target.value)}
-                                    className="input text-sm"
-                                    rows="2"
-                                    placeholder="What the model should say when it doesn't have access to requested information"
-                                />
+                        {/* Default Responses */}
+                        <div className="border border-gray-200 rounded-lg p-6">
+                            <div className="flex items-center gap-2 mb-4">
+                                <FiMessageSquare className="text-purple-500" />
+                                <h4 className="font-semibold">Default Responses</h4>
+                                <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">When model has no access or must follow rules</span>
                             </div>
 
-                            <div>
-                                <label className="label">Restricted Content Response</label>
-                                <textarea
-                                    value={rules.defaultResponses.restrictedContentResponse}
-                                    onChange={(e) => handleDefaultResponseChange('restrictedContentResponse', e.target.value)}
-                                    className="input text-sm"
-                                    rows="2"
-                                    placeholder="Response when content is blocked by safety filters"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="label">Unclear Query Response</label>
-                                <textarea
-                                    value={rules.defaultResponses.unclearQueryResponse}
-                                    onChange={(e) => handleDefaultResponseChange('unclearQueryResponse', e.target.value)}
-                                    className="input text-sm"
-                                    rows="2"
-                                    placeholder="Response when the query is unclear or ambiguous"
-                                />
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-4">
                                 <div>
-                                    <label className="label">Confidence Threshold</label>
-                                    <input
-                                        type="number"
-                                        step="0.1"
-                                        min="0"
-                                        max="1"
-                                        value={rules.overthinkingRestrictions.confidenceThreshold}
-                                        onChange={(e) => handleOverthinkingChange('confidenceThreshold', e.target.value)}
-                                        className="input"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">Low Confidence Response</label>
+                                    <label className="label">No Access Response</label>
                                     <textarea
-                                        value={rules.defaultResponses.confidenceThresholdResponse}
-                                        onChange={(e) => handleDefaultResponseChange('confidenceThresholdResponse', e.target.value)}
+                                        value={rules.defaultResponses.noAccessResponse}
+                                        onChange={(e) => handleDefaultResponseChange('noAccessResponse', e.target.value)}
                                         className="input text-sm"
                                         rows="2"
-                                        placeholder="Response when confidence is below threshold"
+                                        placeholder="What the model should say when it doesn't have access to requested information"
                                     />
+                                </div>
+
+                                <div>
+                                    <label className="label">Restricted Content Response</label>
+                                    <textarea
+                                        value={rules.defaultResponses.restrictedContentResponse}
+                                        onChange={(e) => handleDefaultResponseChange('restrictedContentResponse', e.target.value)}
+                                        className="input text-sm"
+                                        rows="2"
+                                        placeholder="Response when content is blocked by safety filters"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="label">Unclear Query Response</label>
+                                    <textarea
+                                        value={rules.defaultResponses.unclearQueryResponse}
+                                        onChange={(e) => handleDefaultResponseChange('unclearQueryResponse', e.target.value)}
+                                        className="input text-sm"
+                                        rows="2"
+                                        placeholder="Response when the query is unclear or ambiguous"
+                                    />
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="label">Confidence Threshold</label>
+                                        <input
+                                            type="number"
+                                            step="0.1"
+                                            min="0"
+                                            max="1"
+                                            value={rules.overthinkingRestrictions.confidenceThreshold}
+                                            onChange={(e) => handleOverthinkingChange('confidenceThreshold', e.target.value)}
+                                            className="input"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="label">Low Confidence Response</label>
+                                        <textarea
+                                            value={rules.defaultResponses.confidenceThresholdResponse}
+                                            onChange={(e) => handleDefaultResponseChange('confidenceThresholdResponse', e.target.value)}
+                                            className="input text-sm"
+                                            rows="2"
+                                            placeholder="Response when confidence is below threshold"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                {/* Right Column: Data Access & Response Controls */}
-                <div className="space-y-8">
-                    {/* Data Access Controls */}
-                    <div className="border border-gray-200 rounded-lg p-6">
-                        <div className="flex items-center gap-2 mb-4">
-                            <FiDatabase className="text-blue-500" />
-                            <h4 className="font-semibold">Data Access Controls</h4>
+                    {/* Right Column: Data Access & Response Controls */}
+                    <div className="space-y-8">
+                        {/* Data Access Controls */}
+                        <div className="border border-gray-200 rounded-lg p-6">
+                            <div className="flex items-center gap-2 mb-4">
+                                <FiDatabase className="text-blue-500" />
+                                <h4 className="font-semibold">Data Access Controls</h4>
+                            </div>
+
+                            <div className="space-y-3">
+                                {rules.dataAccess.map((access) => (
+                                    <div key={access.id} className="flex items-center justify-between p-3 hover:bg-gray-50 rounded">
+                                        <div className="flex items-center gap-3">
+                                            <input
+                                                type="checkbox"
+                                                checked={access.allowed}
+                                                onChange={() => handleToggleDataAccess(access.id)}
+                                                className="custom-checkbox"
+                                            />
+                                            <div>
+                                                <div className="font-medium">{access.name}</div>
+                                                <div className="text-xs text-gray-500">Access scope: {access.scope}</div>
+                                            </div>
+                                        </div>
+                                        <span className={`px-2 py-1 rounded text-xs font-medium ${getScopeColor(access.scope)}`}>
+                                            {access.scope}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
 
-                        <div className="space-y-3">
-                            {rules.dataAccess.map((access) => (
-                                <div key={access.id} className="flex items-center justify-between p-3 hover:bg-gray-50 rounded">
-                                    <div className="flex items-center gap-3">
+                        {/* Overthinking Restrictions & Response Controls */}
+                        <div className="border border-gray-200 rounded-lg p-6">
+                            <div className="flex items-center gap-2 mb-4">
+                                <FiGlobe className="text-purple-500" />
+                                <h4 className="font-semibold">Response Configuration</h4>
+                            </div>
+
+                            <div className="space-y-4">
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="label">Response Format</label>
+                                        <select
+                                            value={rules.responseControls.responseFormat}
+                                            onChange={(e) => handleResponseControlChange('responseFormat', e.target.value)}
+                                            className="input"
+                                        >
+                                            <option value="natural">Natural Language</option>
+                                            <option value="structured">Structured</option>
+                                            <option value="bullet">Bullet Points</option>
+                                            <option value="markdown">Markdown</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="label">Max Response Length</label>
+                                        <input
+                                            type="number"
+                                            value={rules.responseControls.maxResponseLength}
+                                            onChange={(e) => handleResponseControlChange('maxResponseLength', e.target.value)}
+                                            className="input"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="flex items-center gap-2">
                                         <input
                                             type="checkbox"
-                                            checked={access.allowed}
-                                            onChange={() => handleToggleDataAccess(access.id)}
-                                            className="w-4 h-4 rounded text-blue-500"
+                                            checked={rules.responseControls.requireCitations}
+                                            onChange={(e) => handleResponseControlChange('requireCitations', e.target.checked.toString())}
+                                            className="w-4 h-4 rounded"
                                         />
-                                        <div>
-                                            <div className="font-medium">{access.name}</div>
-                                            <div className="text-xs text-gray-500">Access scope: {access.scope}</div>
-                                        </div>
+                                        <span className="text-sm">Require citations for factual claims</span>
+                                    </label>
+
+                                    <label className="flex items-center gap-2">
+                                        <input
+                                            type="checkbox"
+                                            checked={rules.responseControls.allowMultimodal}
+                                            onChange={(e) => handleResponseControlChange('allowMultimodal', e.target.checked.toString())}
+                                            className="w-4 h-4 rounded"
+                                        />
+                                        <span className="text-sm">Allow multimodal responses</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Overthinking Restrictions */}
+                        <div className="border border-gray-200 rounded-lg p-6">
+                            <div className="flex items-center gap-2 mb-4">
+                                <FiFilter className="text-yellow-500" />
+                                <h4 className="font-semibold">Reasoning Controls</h4>
+                            </div>
+
+                            <div className="space-y-4">
+                                <label className="flex items-center gap-2">
+                                    <input
+                                        type="checkbox"
+                                        checked={rules.overthinkingRestrictions.enableChainOfThought}
+                                        onChange={(e) => handleOverthinkingChange('enableChainOfThought', e.target.checked.toString())}
+                                        className="w-4 h-4 rounded"
+                                    />
+                                    <span className="text-sm">Enable chain-of-thought reasoning</span>
+                                </label>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="label">Max Reasoning Steps</label>
+                                        <input
+                                            type="number"
+                                            value={rules.overthinkingRestrictions.maxReasoningSteps}
+                                            onChange={(e) => handleOverthinkingChange('maxReasoningSteps', e.target.value)}
+                                            className="input"
+                                            min="1"
+                                            max="20"
+                                        />
                                     </div>
-                                    <span className={`px-2 py-1 rounded text-xs font-medium ${getScopeColor(access.scope)}`}>
-                                        {access.scope}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Overthinking Restrictions & Response Controls */}
-                    <div className="border border-gray-200 rounded-lg p-6">
-                        <div className="flex items-center gap-2 mb-4">
-                            <FiGlobe className="text-purple-500" />
-                            <h4 className="font-semibold">Response Configuration</h4>
-                        </div>
-
-                        <div className="space-y-4">
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label className="label">Response Format</label>
-                                    <select
-                                        value={rules.responseControls.responseFormat}
-                                        onChange={(e) => handleResponseControlChange('responseFormat', e.target.value)}
-                                        className="input"
-                                    >
-                                        <option value="natural">Natural Language</option>
-                                        <option value="structured">Structured</option>
-                                        <option value="bullet">Bullet Points</option>
-                                        <option value="markdown">Markdown</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label className="label">Max Response Length</label>
-                                    <input
-                                        type="number"
-                                        value={rules.responseControls.maxResponseLength}
-                                        onChange={(e) => handleResponseControlChange('maxResponseLength', e.target.value)}
-                                        className="input"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="space-y-2">
-                                <label className="flex items-center gap-2">
-                                    <input
-                                        type="checkbox"
-                                        checked={rules.responseControls.requireCitations}
-                                        onChange={(e) => handleResponseControlChange('requireCitations', e.target.checked.toString())}
-                                        className="w-4 h-4 rounded"
-                                    />
-                                    <span className="text-sm">Require citations for factual claims</span>
-                                </label>
-
-                                <label className="flex items-center gap-2">
-                                    <input
-                                        type="checkbox"
-                                        checked={rules.responseControls.allowMultimodal}
-                                        onChange={(e) => handleResponseControlChange('allowMultimodal', e.target.checked.toString())}
-                                        className="w-4 h-4 rounded"
-                                    />
-                                    <span className="text-sm">Allow multimodal responses</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Overthinking Restrictions */}
-                    <div className="border border-gray-200 rounded-lg p-6">
-                        <div className="flex items-center gap-2 mb-4">
-                            <FiFilter className="text-yellow-500" />
-                            <h4 className="font-semibold">Reasoning Controls</h4>
-                        </div>
-
-                        <div className="space-y-4">
-                            <label className="flex items-center gap-2">
-                                <input
-                                    type="checkbox"
-                                    checked={rules.overthinkingRestrictions.enableChainOfThought}
-                                    onChange={(e) => handleOverthinkingChange('enableChainOfThought', e.target.checked.toString())}
-                                    className="w-4 h-4 rounded"
-                                />
-                                <span className="text-sm">Enable chain-of-thought reasoning</span>
-                            </label>
-
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label className="label">Max Reasoning Steps</label>
-                                    <input
-                                        type="number"
-                                        value={rules.overthinkingRestrictions.maxReasoningSteps}
-                                        onChange={(e) => handleOverthinkingChange('maxReasoningSteps', e.target.value)}
-                                        className="input"
-                                        min="1"
-                                        max="20"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">Reasoning Timeout (seconds)</label>
-                                    <input
-                                        type="number"
-                                        value={rules.overthinkingRestrictions.reasoningTimeout}
-                                        onChange={(e) => handleOverthinkingChange('reasoningTimeout', e.target.value)}
-                                        className="input"
-                                        min="5"
-                                        max="120"
-                                    />
+                                    <div>
+                                        <label className="label">Reasoning Timeout (seconds)</label>
+                                        <input
+                                            type="number"
+                                            value={rules.overthinkingRestrictions.reasoningTimeout}
+                                            onChange={(e) => handleOverthinkingChange('reasoningTimeout', e.target.value)}
+                                            className="input"
+                                            min="5"
+                                            max="120"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Custom Rules */}
-            <div className="mt-8 border border-gray-200 rounded-lg p-6">
-                <h4 className="font-semibold mb-4">Custom Behavior Rules (JSON)</h4>
-                <textarea
-                    className="w-full font-mono text-sm border border-gray-300 rounded p-3"
-                    rows="4"
-                    placeholder='{"behavior_rules": {"max_retries": 3, "fallback_strategy": "safe_mode", "context_window": 8192}}'
-                    value={rules.customRules}
-                    onChange={(e) => {
-                        const updatedRules = { ...rules, customRules: e.target.value };
-                        setRules(updatedRules);
-                        onUpdate(updatedRules);
-                    }}
-                />
-                <div className="text-xs text-gray-500 mt-2">
-                    Define custom model behavior rules in JSON format. These will override default settings.
-                </div>
-            </div>
-
-            {/* Recommendations */}
-            <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                <div className="flex items-start gap-3">
-                    <FiAlertCircle className="text-blue-600 mt-1" />
-                    <div>
-                        <h4 className="font-semibold text-blue-800">Configuration Recommendations</h4>
-                        <ul className="text-sm text-blue-700 mt-2 space-y-1">
-                            <li>• Set temperature between 0.5-0.8 for balanced creativity and focus</li>
-                            <li>• Enable PII Protection when handling user data</li>
-                            <li>• Limit data access to only necessary sources for security</li>
-                            <li>• Configure clear default responses for when the model lacks access</li>
-                            <li>• Use chain-of-thought reasoning for complex problem-solving</li>
-                            <li>• Set response length limits to prevent excessive outputs</li>
-                            <li>• Define fallback responses for unclear queries and restricted content</li>
-                        </ul>
+                {/* Custom Rules */}
+                <div className="mt-8 border border-gray-200 rounded-lg p-6">
+                    <h4 className="font-semibold mb-4">Custom Behavior Rules (JSON)</h4>
+                    <textarea
+                        className="w-full font-mono text-sm border border-gray-300 rounded p-3"
+                        rows="4"
+                        placeholder='{"behavior_rules": {"max_retries": 3, "fallback_strategy": "safe_mode", "context_window": 8192}}'
+                        value={rules.customRules}
+                        onChange={(e) => {
+                            const updatedRules = { ...rules, customRules: e.target.value };
+                            setRules(updatedRules);
+                            // onUpdate(updatedRules);
+                        }}
+                    />
+                    <div className="text-xs text-gray-500 mt-2">
+                        Define custom model behavior rules in JSON format. These will override default settings.
                     </div>
                 </div>
+
+                {/* Recommendations */}
+                <div className="mt-8 p-4 bg-[#a4fdeb] border border-[#00d4aa] rounded-lg">
+                    <div className="flex items-start gap-3">
+                        <FiAlertCircle className="text-black-600 mt-1" />
+                        <div>
+                            <h4 className="font-semibold text-black-800">Configuration Recommendations</h4>
+                            <ul className="text-sm ext-black-600 mt-2 space-y-1">
+                                <li>• Set temperature between 0.5-0.8 for balanced creativity and focus</li>
+                                <li>• Enable PII Protection when handling user data</li>
+                                <li>• Limit data access to only necessary sources for security</li>
+                                <li>• Configure clear default responses for when the model lacks access</li>
+                                <li>• Use chain-of-thought reasoning for complex problem-solving</li>
+                                <li>• Set response length limits to prevent excessive outputs</li>
+                                <li>• Define fallback responses for unclear queries and restricted content</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     );
