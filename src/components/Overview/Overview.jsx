@@ -30,7 +30,7 @@ const Overview = () => {
     return (
         <div className="main-content" >
 
-            <div className="hero-section">
+            <div className="hero-section" style={{ height: '300px' }}>
 
                 <div className="hero-content">
                     <h1>Start Your AI Journey</h1>
@@ -54,13 +54,23 @@ const Overview = () => {
                     <div>
                         <h3>GPT-5</h3>
                         <p>Advanced model with enhanced understanding, reasoning, and generating human-like responses. it including writing, problem-solving, and conversation.</p>
-                        <button className="check-btn">Check it out</button>
+                        <button className="check-btn" onClick={() => navigate('/model-details', {
+                            state: {
+                                modelName: 'GPT-5',
+                                overview: 'Advanced model with enhanced understanding, reasoning, and generating human-like responses. it including writing, problem-solving, and conversation.',
+                            },
+                        })}>Check it out </button>
                     </div>
 
                     <div>
                         <h3>GPT-4.5</h3>
                         <p>GPT-4.5  offers faster performance making it ideal for well-defined tasks and clear, focused prompts.</p>
-                        <button className="check-btn">Check it out</button>
+                        <button className="check-btn" onClick={() => navigate('/model-details', {
+                            state: {
+                                modelName: 'GPT-4.5',
+                                overview: 'GPT-4.5 Advanced model with enhanced understanding, reasoning, and generating human-like responses. it including writing, problem-solving, and conversation.',
+                            },
+                        })}>Check it out </button>
                     </div>
                 </Slider>
 
@@ -82,10 +92,10 @@ const Overview = () => {
                         information.This allows to seamlessly pull and update data from multiple systems, databases, or APIs
                     </p>
 
-                    <button className="card-button" onClick={() => navigate('/data-sources')}>Try Playground</button>
+                    <button className="card-button" onClick={() => navigate('/chat')}>Try Playground</button>
                 </div>
 
-                <div className="card-container" style={{ border: "1px solid #d0d7df " }} >
+                <div className="card-container" style={{ border: "1px solid #d0d7df  " }} >
                     <div className='card-head-title' >
                         <div className="card-icon-wrapper mb-3">
                             <FiSliders size={30} />
@@ -98,7 +108,7 @@ const Overview = () => {
                         Seamless Inference
                         Efficiently manage batch processing with high-throughput performance, ensuring fast, reliable API execution for every job. Keep your operations running smoothly and your users always connected.                    </p>
 
-                    <button className="card-button" onClick={() => navigate('/data-training')}>Manage Interfase</button>
+                    <button className="card-button" onClick={() => navigate('/providers')}>Manage Interfase</button>
                 </div>
             </div>
             <div className='overview'>
@@ -132,7 +142,7 @@ const Overview = () => {
                         Connect and integrate external data sources to enable real-time access and retrieval of information.This allows to seamlessly pull and update data from multiple systems, databases, or APIs.
                     </p>
 
-                    <button className="card-button" onClick={() => navigate('/data-sources')}>Setup</button>
+                    <button className="card-button" onClick={() => navigate('/data-training')}>Setup</button>
                 </div>
             </div>
 

@@ -52,11 +52,16 @@ const SettingsTabs = () => {
               backgroundColor: "#f4f5f6",
               minWidth: 100,
             },
+            "& .MuiTab-root.Mui-selected": {
+              color: "#000", // ✅ selected text color
+
+            },
             "& .MuiTabs-indicator": {
               backgroundColor: "#00c49a",
               color: "#000",
               height: 3,
             },
+
           }}
         >
           <Tab label="PROFILE" />

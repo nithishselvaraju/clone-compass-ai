@@ -12,11 +12,13 @@ import { FiKey } from "react-icons/fi";
 import { TbReportAnalytics } from "react-icons/tb";
 import { RiFileList3Line } from "react-icons/ri";
 import { TbGridDots } from "react-icons/tb";
+import { useNavigate } from 'react-router-dom';
+import AppLogo from '../../assets/apex-logo.svg'
 
 const Header = ({ onToggleSidebar }) => {
     const [workspaceAnchor, setWorkspaceAnchor] = useState(null);
     const [profileAnchor, setProfileAnchor] = useState(null);
-
+    const navigate = useNavigate();
     return (
         <header className="header">
             {/* LEFT */}
@@ -26,27 +28,35 @@ const Header = ({ onToggleSidebar }) => {
                 </button>
 
                 <div className="logo">
+                    <img src={AppLogo} style={{ width: '40px' }} />
+
                     <span className="logo-text">APEX AI 3</span>
                 </div>
             </div>
 
             {/* RIGHT */}
             <div className="header-right">
-                <button className="doc-btn">
+                <button className="doc-btn" style={{ borderRight: "1px solid #e0e0e0" }} onClick={() =>
+                    window.open(
+                        "https://www.core42.ai/compass/documentation",
+                        "_blank",
+                        "noopener,noreferrer"
+                    )
+                }>
                     <IoFolderOutline size={22} />
-                    <Typography variant="p" sx={{ fontWeight: 600 }} >Documentation</Typography>
+                    <Typography variant="p" sx={{ fontWeight: 600, pointerEvents: "none" }} >Documentation</Typography>
 
-                    <FaArrowUpLong style={{ transform: "rotate(45deg)" }} size={14} />
+                    <FaArrowUpLong style={{ transform: "rotate(45deg)", pointerEvents: "none" }} size={14} />
                 </button>
 
                 {/* WORKSPACE */}
                 <button
-                    className="workspace-btn"
+                    className="workspace-btn" style={{ borderRight: "1px solid #e0e0e0" }}
                     onClick={(e) => setWorkspaceAnchor(e.currentTarget)}
                 >
 
                     <TbGridDots size={22} />
-                    <Typography variant="p" sx={{ fontWeight: 600 }} >WorkSpace</Typography>
+                    <Typography variant="p" sx={{ fontWeight: 600, pointerEvents: "none" }} >WorkSpace</Typography>
                 </button>
 
                 <Menu
@@ -120,9 +130,9 @@ const Header = ({ onToggleSidebar }) => {
                     className="user-menu"
                     onClick={(e) => setProfileAnchor(e.currentTarget)}
                 >
-                    <Typography variant="p" sx={{ fontWeight: 600 }} >User</Typography>
+                    <Typography variant="p" sx={{ fontWeight: 600, pointerEvents: "none" }} >User</Typography>
 
-                    <span style={{ color: "#00c853", fontSize: "12px" }}>▼</span>
+                    <span style={{ color: "#00c853", fontSize: "12px", pointerEvents: "none" }}>▼</span>
 
                 </button>
 
@@ -146,7 +156,8 @@ const Header = ({ onToggleSidebar }) => {
                         <div
                             className="profile-item"
                             onClick={() => {
-                                window.location.href = "/settings";
+                                navigate("/settings")
+
                             }}
                         >
                             <MdOutlineSettings size={18} />

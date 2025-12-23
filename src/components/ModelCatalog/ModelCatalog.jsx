@@ -152,19 +152,28 @@ const ModelCatalog = ({ showFilters, setShowFilters }) => {
                             sx: {
                                 width: 380,
                                 py: 2,
-                                maxHeight: "80vh",
-                                overflowY: "auto",
+                                // maxHeight: "80vh",
+                                // overflowY: "auto",
                                 borderRadius: 2,
                                 boxShadow: "0px 8px 24px rgba(0,0,0,0.12)",
                                 ml: 34,
-                                mt:-8
+                                // mt: -8,
+                                display: "flex",
+                                flexDirection: "column",
+                                overflow: "hidden",
+                                // top: '66px'
 
                             },
                         }}
                     >
                         {/* YOUR FILTER CONTENT HERE */}
 
-                        <Box sx={{ height: "400px", overflowY: "auto",px:4 }} >
+                        <Box sx={{
+                            flex: 1, // Takes available space
+                            overflowY: "auto", // Scroll only this area
+                            maxHeight: "calc(80vh - 70px)",
+                            px: 4
+                        }} >
                             {/* PROVIDERS */}
                             <div className="filter-section">
                                 <h4>Providers (11)</h4>
@@ -230,7 +239,16 @@ const ModelCatalog = ({ showFilters, setShowFilters }) => {
                             </div>
                         </Box>
                         {/* FOOTER */}
-                        <Grid container justifyContent="space-between" sx={{ mt: 3,borderTop:"solid 1px #8f8f8fff",px:4,pt:1 }}>
+                        <Grid container justifyContent="space-between"
+                            sx={{
+                                flexShrink: 0, // Don't shrink
+                                mt: "auto", // Push to bottom
+                                borderTop: "solid 1px #cfcbcbff",
+                                px: 4,
+                                pt: 1,
+                                pb: 1,
+                                backgroundColor: "white" // Ensure background color
+                            }}>
                             <Grid item>
                                 <button className="clear-btn">Clear all</button>
                             </Grid>
