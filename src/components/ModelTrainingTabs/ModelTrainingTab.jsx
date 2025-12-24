@@ -25,8 +25,18 @@ import cohere from "../../assets/cohere.svg"
 import xai from "../../assets/xai.svg"
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import OnboardingWizardDialog from '../AiOS/OnboardingWizardDialog';
-
-
+import { IntentRegistryPage } from '../../components/AiOS/IntentRegistryPage';
+import { ToolStudioPage } from '../../components/AiOS/ToolStudioPage';
+import { SemanticDataLayerPage } from '../../components/AiOS/SemanticDataLayerPage';
+import {
+    Settings as SettingsIcon,
+    Psychology as PsychologyIcon,
+    Schema as SchemaIcon,
+    Storage as StorageIcon,
+    AutoFixHigh as AutoFixHighIcon,
+    Security as SecurityIcon,
+    Timeline as TimelineIcon
+} from '@mui/icons-material';
 
 // TabPanel Component for content switching
 const TabPanel = (props) => {
@@ -105,53 +115,66 @@ const ModelTrainingTab = () => {
                 <Tabs
                     value={value}
                     onChange={handleChange}
-                    variant="fullWidth"
+                    // variant="fullWidth"
                     // textColor="#14e2b9ff"
                     // indicatorColor="#1fe4bcff"
+                    variant="scrollable"
+                    scrollButtons="auto"
+                    allowScrollButtonsMobile
                     sx={{
                         '& .MuiTab-root': {
                             fontSize: '14px',
                             fontWeight: 500,
                             textTransform: 'none',
                             minHeight: '60px',
-                            color: '#807e7eff', // Default text color (gray)
+                            whiteSpace: 'nowrap',
+                            color: '#807e7eff',
                             '&.Mui-selected': {
-                                color: '#000000ff', // Selected text color (teal)
+                                color: '#000000ff',
                                 fontWeight: 600,
                             },
                             '&:hover': {
-                                color: '#000000ff', // Hover color (teal)
+                                color: '#000000ff',
                             },
                         },
                         '& .MuiTabs-indicator': {
-                            backgroundColor: '#000000ff', // Indicator color (teal)
+                            backgroundColor: '#000000ff',
                         },
                     }}
                 >
+
+                    <Tab
+                        icon={<AutoFixHighIcon size={20} />}
+                        iconPosition="start"
+                        label="Tools Setup"
+                    />
+                    <Tab
+                        icon={<PsychologyIcon size={20} />}
+                        iconPosition="start"
+                        label="Intent Registry"
+                    />
                     <Tab
                         icon={<FiDatabase size={20} />}
                         iconPosition="start"
                         label="Data Training"
                     />
-                    <Tab
-                        icon={<FiSliders size={20} />}
+
+
+                    {/* <Tab
+                        icon={<SchemaIcon size={20} />}
                         iconPosition="start"
-                        label="Fine Tuning"
-                    />
+                        label="Semantic Layer"
+                    /> */}
+
                     <Tab
                         icon={<FiCheck size={20} />}
                         iconPosition="start"
                         label="Rules Setup"
                     />
                     <Tab
-                        icon={<FiCheck size={20} />}
+                        icon={<FiSliders size={20} />}
                         iconPosition="start"
-                        label="Intent Registry"
-                    />
-                    <Tab
-                        icon={<FiCheck size={20} />}
-                        iconPosition="start"
-                        label="Tools Setup"
+                        label="Fine Tuning"
                     />
                 </Tabs>
             </Box>
@@ -163,14 +186,23 @@ const ModelTrainingTab = () => {
                 padding: '0 40px'
             }}>
                 <TabPanel value={value} index={0}>
-                    <DataTraining />
+                    <ToolStudioPage />
                 </TabPanel>
-                <TabPanel value={value} index={1}>
 
-                    <FineTuning />
+                <TabPanel value={value} index={1}>
+                    <IntentRegistryPage />
                 </TabPanel>
                 <TabPanel value={value} index={2}>
+                    <DataTraining />
+                </TabPanel>
+                {/* <TabPanel value={value} index={2}>
+                    <SemanticDataLayerPage />
+                </TabPanel> */}
+                <TabPanel value={value} index={3}>
                     <RulesSetupStep />
+                </TabPanel>
+                <TabPanel value={value} index={4}>
+                    <FineTuning />
                 </TabPanel>
             </div>
 

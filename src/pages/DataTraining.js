@@ -205,7 +205,7 @@ const DataTraining = ({ data, onUpdate }) => {
                         </div>
 
                         {/* ================= Code Example ================= */}
-                        <div
+                        {/* <div
                             ref={(el) => (sectionRefs.current['File Upload'] = el)}
                         >
                             <div className='my-10' >
@@ -263,7 +263,7 @@ const DataTraining = ({ data, onUpdate }) => {
                                     </div>
                                 )}
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* ================= Pricing ================= */}
                         {/* <div

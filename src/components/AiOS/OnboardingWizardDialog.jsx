@@ -18,13 +18,21 @@ import {
     Button,
     Box,
     Divider,
-    Paper
+    Paper,
+    Grid
 } from '@mui/material';
 
 const OnboardingWizardDialog = ({ open, onClose, onComplete }) => {
     const [activeStep, setActiveStep] = useState(0);
     const [formData, setFormData] = useState({
         companyName: '',
+        description: '',
+        sector: '',
+        subDomain: '',
+        primaryUseCase: '',
+        modelPreference: '',
+        maxToken: '',
+        modelType: '',
         industry: '',
         useCase: '',
         dataTypes: [],
@@ -38,9 +46,18 @@ const OnboardingWizardDialog = ({ open, onClose, onComplete }) => {
     const dataTypes = ['Customer Data', 'Financial Records', 'Medical Records', 'Product Catalog', 'Market Data', 'Internal Documents', 'APIs/Webhooks', 'Databases'];
     const complianceFrameworks = ['GDPR', 'HIPAA', 'PCI-DSS', 'FINRA', 'SOC2', 'ISO27001'];
 
-    const steps = ['Company Info', 'Business Domain', 'AI Purpose', 'Data & Compliance', 'Review'];
+    const steps = ['Use Case Info', 'Business Domain', 'AI Purpose', 'Review'];
 
     const handleNext = () => {
+        if (activeStep === steps.length - 1) {
+            onComplete(formData);
+            onClose();
+        } else {
+            setActiveStep(activeStep + 1);
+        }
+    };
+
+    const handleTapClick = () => {
         if (activeStep === steps.length - 1) {
             onComplete(formData);
             onClose();
@@ -73,6 +90,39 @@ const OnboardingWizardDialog = ({ open, onClose, onComplete }) => {
             fontSize: "14px", // Adjust text size
             color: "#000000", // Text color
             padding: "0 12px", // Adjust padding
+        },
+    };
+
+    const inputTextAreaSx = {
+        "& .MuiOutlinedInput-root": {
+            backgroundColor: "#f4f5f6",
+            borderRadius: "0px",
+            "& fieldset": {
+                border: "none",
+            },
+            "&:hover fieldset": {
+                border: "none",
+            },
+            "&.Mui-focused fieldset": {
+                border: "none",
+                outline: "none",
+            },
+            // Remove fixed height for multiline
+            "&.Mui-focused": {
+                outline: "none",
+                boxShadow: "none",
+            },
+        },
+        "& .MuiInputBase-input": {
+            fontSize: "14px",
+            color: "#000000",
+            padding: "12px",
+            // Better line height for multiline
+            lineHeight: "1.5",
+        },
+        // Remove outline on focus for the entire component
+        "& .Mui-focused": {
+            outline: "none",
         },
     };
 
@@ -109,17 +159,17 @@ const OnboardingWizardDialog = ({ open, onClose, onComplete }) => {
 
                         <Box>
                             <Typography variant="body2" fontWeight={450} fontSize={'15px'} color='#2f2f32' mb={1}>
-                                Company Name
+                                Use Case
                             </Typography>
                             <TextField
                                 fullWidth
-                                placeholder="Company Name"
+                                placeholder="Enter use case"
                                 value={formData.companyName}
                                 onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
                                 sx={inputSx}
                             />
                         </Box>
-                        {/* Team Size Field (styled like Source Type) */}
+
                         <Box>
                             <Typography
                                 variant="body2"
@@ -128,36 +178,20 @@ const OnboardingWizardDialog = ({ open, onClose, onComplete }) => {
                                 color='#2f2f32'
                                 mb={1}
                             >
-                                Team Size
+                                Description
                             </Typography>
                             <TextField
-                                select
                                 fullWidth
-                                value={formData.teamSize}
-                                onChange={(e) => setFormData({ ...formData, teamSize: e.target.value })}
-                                sx={{
-                                    ...inputSx,
-                                    "& .MuiSelect-select": {
-                                        display: "flex",
-                                        alignItems: "center",
-                                        height: "44px !important",
-                                    },
-                                }}
-                                SelectProps={{
-                                    displayEmpty: true,
-                                    renderValue: (selected) => {
-                                        if (!selected || selected === "") {
-                                            return <span style={{ color: '#999' }}>Select Team Size</span>;
-                                        }
-                                        return selected;
-                                    },
-                                }}
-                            >
-                                <MenuItem value="">Select Team Size</MenuItem>
-                                {['1-10', '11-50', '51-200', '201-1000', '1000+'].map(size => (
-                                    <MenuItem key={size} value={size}>{size}</MenuItem>
-                                ))}
-                            </TextField>
+                                multiline
+                                minRows={4}
+                                maxRows={10}
+                                placeholder="Enter description"
+                                value={formData.description}
+                                onChange={(e) =>
+                                    setFormData({ ...formData, description: e.target.value })
+                                }
+                                sx={inputTextAreaSx}
+                            />
                         </Box>
                     </Box>
                 );
@@ -174,13 +208,13 @@ const OnboardingWizardDialog = ({ open, onClose, onComplete }) => {
                                 color='#2f2f32'
                                 mb={1}
                             >
-                                Industry
+                                Sector
                             </Typography>
                             <TextField
                                 select
                                 fullWidth
-                                value={formData.industry}
-                                onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
+                                value={formData.sector}
+                                onChange={(e) => setFormData({ ...formData, sector: e.target.value })}
                                 sx={{
                                     ...inputSx,
                                     "& .MuiSelect-select": {
@@ -220,7 +254,21 @@ const OnboardingWizardDialog = ({ open, onClose, onComplete }) => {
                             {formData.industry === 'Healthcare' && 'We\'ll pre-configure HIPAA compliance, patient data handling, and medical terminology tools.'}
                             {formData.industry && !['Insurance', 'Banking', 'Healthcare'].includes(formData.industry) && 'We\'ll configure default AI tools for your industry.'}
                         </Typography>
-                    </Box>
+
+                        <Box>
+                            <Typography variant="body2" fontWeight={450} fontSize={'15px'} color='#2f2f32' mb={1}>
+                                Sub domain
+                            </Typography>
+                            <TextField
+                                fullWidth
+                                placeholder="Enter domain"
+                                value={formData.subDomain}
+                                onChange={(e) => setFormData({ ...formData, subDomain: e.target.value })}
+                                sx={inputSx}
+                            />
+                        </Box>
+
+                    </Box >
                 );
 
             case 2:
@@ -240,8 +288,8 @@ const OnboardingWizardDialog = ({ open, onClose, onComplete }) => {
                             <TextField
                                 select
                                 fullWidth
-                                value={formData.useCase}
-                                onChange={(e) => setFormData({ ...formData, useCase: e.target.value })}
+                                value={formData.primaryUseCase}
+                                onChange={(e) => setFormData({ ...formData, primaryUseCase: e.target.value })}
                                 sx={{
                                     ...inputSx,
                                     "& .MuiSelect-select": {
@@ -318,137 +366,93 @@ const OnboardingWizardDialog = ({ open, onClose, onComplete }) => {
                                 <MenuItem value="custom">Custom/Private Model</MenuItem>
                             </TextField>
                         </Box>
+
+                        <Box>
+                            <Typography variant="body2" fontWeight={500} mb={1}>
+                                Max Tokens
+                            </Typography>
+                            <TextField
+                                fullWidth
+                                placeholder="Max Tokens Eg.32781"
+                                value={formData.maxToken}
+                                onChange={(e) => setFormData({ ...formData, maxToken: e.target.value })}
+                                sx={inputSx}
+                            />
+                        </Box>
+
+
+                        <Box>
+                            <Typography variant="body2" fontWeight={500} mb={1}>
+                                Model Type
+                            </Typography>
+
+                            <TextField
+                                select
+                                fullWidth
+                                value={formData.modelType}
+                                onChange={(e) => setFormData({ ...formData, modelType: e.target.value })}
+                                sx={{
+                                    ...inputSx,
+                                    "& .MuiSelect-select": {
+                                        display: "flex",
+                                        alignItems: "center",
+                                        height: "44px !important",
+                                    },
+                                }}
+                                SelectProps={{
+                                    displayEmpty: true,
+                                    renderValue: (selected) => {
+                                        if (!selected) {
+                                            return <span style={{ color: '#999' }}>Select Model Type</span>;
+                                        }
+                                        return selected;
+                                    },
+                                }}
+                            >
+                                <MenuItem value="">Select Model Type</MenuItem>
+                                <MenuItem value="API">API Hosted</MenuItem>
+                                <MenuItem value="Self-Hosted">Self Hosted</MenuItem>
+                                <MenuItem value="OpenSource">Open Source</MenuItem>
+                            </TextField>
+                        </Box>
+
                     </Box>
                 );
 
             case 3:
                 return (
-                    <Box className="space-y-4">
-                        {/* Data Types Field */}
-                        <Box>
-                            <Typography
-                                variant="body2"
-                                fontWeight={450}
-                                fontSize={'15px'}
-                                color='#2f2f32'
-                                mb={1}
-                            >
-                                Data Types You'll Use
-                            </Typography>
-                            <FormControl fullWidth sx={{ mb: 3 }}>
-                                <Select
-                                    multiple
-                                    value={formData.dataTypes || []}
-                                    onChange={(e) => setFormData({ ...formData, dataTypes: e.target.value })}
-                                    displayEmpty
-                                    renderValue={(selected) => {
-                                        const selectedArray = Array.isArray(selected) ? selected : [];
-
-                                        if (selectedArray.length === 0) {
-                                            return <span style={{ color: '#999' }}>Select Data Types</span>;
-                                        }
-                                        return (
-                                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                                {selectedArray.map(value => (
-                                                    <Chip key={value} label={value} size="small" />
-                                                ))}
-                                            </Box>
-                                        );
-                                    }}
-                                    sx={selectSx}
-
-                                    MenuProps={{
-                                        PaperProps: {
-                                            style: {
-                                                maxHeight: 300,
-                                            },
-                                        },
-                                    }}
-                                >
-                                    {dataTypes.map(type => (
-                                        <MenuItem key={type} value={type}>
-                                            <Checkbox checked={(formData.dataTypes || []).includes(type)} />
-                                            {type}
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
-                        </Box>
-
-                        {/* Compliance Requirements Field */}
-                        <Box>
-                            <Typography
-                                variant="body2"
-                                fontWeight={450}
-                                fontSize={'15px'}
-                                color='#2f2f32'
-                                mb={1}
-                            >
-                                Compliance Requirements
-                            </Typography>
-                            <FormControl fullWidth>
-                                <Select
-                                    multiple
-                                    value={formData.compliance || []}
-                                    onChange={(e) => setFormData({ ...formData, compliance: e.target.value })}
-                                    displayEmpty
-                                    renderValue={(selected) => {
-                                        const selectedArray = Array.isArray(selected) ? selected : [];
-
-                                        if (selectedArray.length === 0) {
-                                            return <span style={{ color: '#999' }}>Select Compliance Requirements</span>;
-                                        }
-                                        return (
-                                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                                {selectedArray.map(value => (
-                                                    <Chip key={value} label={value} size="small" />
-                                                ))}
-                                            </Box>
-                                        );
-                                    }}
-                                    sx={selectSx}
-                                    MenuProps={{
-                                        PaperProps: {
-                                            style: {
-                                                maxHeight: 300,
-                                            },
-                                        },
-                                    }}
-                                >
-                                    {complianceFrameworks.map(framework => (
-                                        <MenuItem key={framework} value={framework}>
-                                            <Checkbox checked={(formData.compliance || []).includes(framework)} />
-                                            {framework}
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
-                        </Box>
-                    </Box>
-                );
-
-            case 4:
-                return (
                     <Paper className="bg-gray-50" sx={{ p: 2 }}>
                         <Typography variant="h6" sx={{ mb: 2 }}>Configuration Summary</Typography>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <Typography variant="body2" color="text.secondary">Company:</Typography>
+                                <Typography variant="body2" color="text.secondary">Use Case:</Typography>
                                 <Typography variant="body1" fontWeight="medium">{formData.companyName}</Typography>
                             </Box>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <Typography variant="body2" color="text.secondary">Industry:</Typography>
-                                <Typography variant="body1" fontWeight="medium">{formData.industry}</Typography>
+                                <Typography variant="body2" color="text.secondary">Sector:</Typography>
+                                <Typography variant="body1" fontWeight="medium">{formData.sector}</Typography>
                             </Box>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <Typography variant="body2" color="text.secondary">Use Case:</Typography>
-                                <Typography variant="body1" fontWeight="medium">{formData.useCase}</Typography>
+                                <Typography variant="body2" color="text.secondary">Sub Domain:</Typography>
+                                <Typography variant="body1" fontWeight="medium">{formData.subDomain}</Typography>
+                            </Box>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <Typography variant="body2" color="text.secondary">Primary Use Case:</Typography>
+                                <Typography variant="body1" fontWeight="medium">{formData.primaryUseCase}</Typography>
                             </Box>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <Typography variant="body2" color="text.secondary">Model:</Typography>
                                 <Typography variant="body1" fontWeight="medium">{formData.modelPreference}</Typography>
                             </Box>
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <Typography variant="body2" color="text.secondary">Model Max Token:</Typography>
+                                <Typography variant="body1" fontWeight="medium">{formData.maxToken}</Typography>
+                            </Box>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <Typography variant="body2" color="text.secondary">Model Type:</Typography>
+                                <Typography variant="body1" fontWeight="medium">{formData.modelType}</Typography>
+                            </Box>
+                            {/* <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                 <Typography variant="body2" color="text.secondary">Data Types:</Typography>
                                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, maxWidth: '60%' }}>
                                     {formData.dataTypes.map(type => (
@@ -463,7 +467,7 @@ const OnboardingWizardDialog = ({ open, onClose, onComplete }) => {
                                         <Chip key={fw} label={fw} size="small" color="primary" />
                                     ))}
                                 </Box>
-                            </Box>
+                            </Box> */}
                         </Box>
                     </Paper>
                 );

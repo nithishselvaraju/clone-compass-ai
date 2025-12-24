@@ -383,6 +383,7 @@ const ModelCatalog = ({ showFilters, setShowFilters }) => {
 
 
                             <Grid container spacing={2}>
+
                                 <Grid item size={6}>
                                     {/* <Typography variant="body2" fontWeight={500} mb={1}>
                                         Cost
