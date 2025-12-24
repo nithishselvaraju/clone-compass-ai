@@ -24,6 +24,7 @@ import qwen from "../../assets/qwen.svg"
 import cohere from "../../assets/cohere.svg"
 import xai from "../../assets/xai.svg"
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+import OnboardingWizardDialog from '../AiOS/OnboardingWizardDialog';
 
 
 
@@ -75,6 +76,8 @@ const ModelTrainingTab = () => {
         { name: "xAI", logo: xai },
     ];
 
+    const [showWizard, setShowWizard] = useState(false);
+
     return (
         <div className='main-content' >
             {/* Header Section */}
@@ -85,7 +88,11 @@ const ModelTrainingTab = () => {
                 </div>
 
                 <button className="request-model-btn align-right"
-                    onClick={() => setAiModel(true)}>Select Model</button>
+                    // onClick={() => setAiModel(true)}
+                    onClick={() => setShowWizard(true)}
+                >
+                    Configure AI
+                </button>
             </div>
 
             {/* Horizontal Tabs */}
@@ -136,6 +143,16 @@ const ModelTrainingTab = () => {
                         iconPosition="start"
                         label="Rules Setup"
                     />
+                    <Tab
+                        icon={<FiCheck size={20} />}
+                        iconPosition="start"
+                        label="Intent Registry"
+                    />
+                    <Tab
+                        icon={<FiCheck size={20} />}
+                        iconPosition="start"
+                        label="Tools Setup"
+                    />
                 </Tabs>
             </Box>
 
@@ -157,6 +174,14 @@ const ModelTrainingTab = () => {
                 </TabPanel>
             </div>
 
+            <OnboardingWizardDialog
+                open={showWizard}
+                onClose={() => setShowWizard(false)}
+                onComplete={(formData) => {
+                    console.log('Configuration completed:', formData);
+                }}
+            />
+
             <Dialog
                 open={aiModel}
                 maxWidth="md"
@@ -170,7 +195,7 @@ const ModelTrainingTab = () => {
                 <Divider />
 
                 {/* Body */}
-                <Box sx={{ display: "flex", height: "250px" }}>
+                <Box sx={{ display: "flex", height: "400px" }}>
 
                     {/* Left Sidebar */}
                     <Box className="chat-pop-left"
@@ -246,8 +271,6 @@ const ModelTrainingTab = () => {
 
                     </Box>
                 </Box>
-
-
 
                 {/* Footer */}
                 <DialogActions sx={{ p: 2 }}>

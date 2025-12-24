@@ -15,6 +15,8 @@ import Chate from './pages/playground/Chate';
 import Realtime from './pages/playground/Realtime';
 import SettingsTabs from './pages/SettingsTabs';
 import ModelTrainingTab from './components/ModelTrainingTabs/ModelTrainingTab';
+import AIOperatingSystemDashboard from './pages/newflow/AIOperatingSystemDashboard';
+import AIOSEnterpriseDashboard from './pages/newflow/AIOperatingSystemDashboard';
 
 
 
@@ -66,6 +68,8 @@ function App() {
             <Route path="/data-sources" element={<DataSources />} />
             <Route path="/rules-setup" element={<RulesSetupStep />} />
             <Route path="/model-details" element={<ModelDetails />} />
+            <Route path="/aios" element={<AIOperatingSystemDashboard />} />
+            {/* <Route path="/aios" element={<AIOSEnterpriseDashboard />} /> */}
             {/* <Route path="/clients" element={<Clients />} /> */}
           </Routes>
 

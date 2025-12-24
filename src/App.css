@@ -379,6 +379,9 @@
   /* overflow-y: auto; */
   width: 950px;
   max-width: 950px;
+  height: auto;
+  /* default */
+  overflow: visible;
 
 }
 

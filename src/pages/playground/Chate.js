@@ -280,6 +280,11 @@ const Chat = () => {
           open={aiModel}
           maxWidth="md"
           fullWidth
+          PaperProps={{
+            sx: {
+              overflow: "hidden",
+            },
+          }}
         >
           {/* Header */}
           <DialogTitle>

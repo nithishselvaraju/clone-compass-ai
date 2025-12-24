@@ -250,7 +250,7 @@ const FineTuning = ({ data, onUpdate }) => {
         <div className="main-content">
             {/* Header */}
 
-            <div style={{ marginLeft: "0px", marginRight: "auto", width: "90%" }} className='flex flex-col h-screen ' >
+            <div style={{ marginLeft: "0px", marginRight: "auto", width: "90%" }} className='flex flex-col h-full  ' >
 
                 <div className="flex gap-2 items-center ">
 

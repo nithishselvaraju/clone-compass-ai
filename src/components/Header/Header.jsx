@@ -30,7 +30,7 @@ const Header = ({ onToggleSidebar }) => {
                 <div className="logo">
                     <img src={AppLogo} style={{ width: '40px' }} />
 
-                    <span className="logo-text">APEX AI 3</span>
+                    <span className="logo-text">APEX AI3</span>
                 </div>
             </div>
 
