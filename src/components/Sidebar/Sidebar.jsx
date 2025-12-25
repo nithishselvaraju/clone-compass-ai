@@ -60,7 +60,7 @@ const Sidebar = ({ activeView, setActiveView, collapsed }) => {
             label: 'Data Sources'
         },
         {
-            path: '/data-training',
+            path: '/model-training',
             icon: <FiSliders />,
             label: 'Model Training'
         },
@@ -70,6 +70,7 @@ const Sidebar = ({ activeView, setActiveView, collapsed }) => {
             children: [
                 { label: 'Standard', path: '/chat' },
                 { label: 'Pre-Trained', path: '/realtime' },
+                { label: 'API', path: '/api-playground' },
             ],
         },
     ];

@@ -23,6 +23,7 @@ import deepseek from "../../assets/deepseek.svg"
 import qwen from "../../assets/qwen.svg"
 import cohere from "../../assets/cohere.svg"
 import xai from "../../assets/xai.svg"
+import { FaQuestion } from "react-icons/fa";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import OnboardingWizardDialog from '../AiOS/OnboardingWizardDialog';
 import { IntentRegistryPage } from '../../components/AiOS/IntentRegistryPage';
@@ -97,12 +98,12 @@ const ModelTrainingTab = () => {
                     <p className="text-sm text-gray-600 mt-1">Configure and train your AI model with data, fine-tuning, and rules</p>
                 </div>
 
-                <button className="request-model-btn align-right"
+                {/* <button className="request-model-btn align-right"
                     // onClick={() => setAiModel(true)}
                     onClick={() => setShowWizard(true)}
                 >
                     Configure AI
-                </button>
+                </button> */}
             </div>
 
             {/* Horizontal Tabs */}
@@ -144,9 +145,9 @@ const ModelTrainingTab = () => {
                 >
 
                     <Tab
-                        icon={<AutoFixHighIcon size={20} />}
+                        icon={<FiDatabase size={20} />}
                         iconPosition="start"
-                        label="Tools Setup"
+                        label="Data Model Setup"
                     />
                     <Tab
                         icon={<PsychologyIcon size={20} />}
@@ -154,9 +155,9 @@ const ModelTrainingTab = () => {
                         label="Intent Registry"
                     />
                     <Tab
-                        icon={<FiDatabase size={20} />}
+                        icon={<FaQuestion size={18} />}
                         iconPosition="start"
-                        label="Data Training"
+                        label="Q&A Training"
                     />
 
 
@@ -317,7 +318,7 @@ const ModelTrainingTab = () => {
     );
 };
 
-// Add this CSS to hide scrollbars but keep functionality
+
 const hideScrollbarStyles = `
 /* Hide scrollbar for Chrome, Safari and Opera */
 .hide-scrollbar::-webkit-scrollbar {
@@ -336,5 +337,5 @@ const hideScrollbarStyles = `
 }
 `;
 
-// You can add these styles to your global CSS or inline
+
 export default ModelTrainingTab;

@@ -116,7 +116,7 @@ const DataTraining = ({ data, onUpdate }) => {
                 <div className="flex gap-2 items-center ">
 
                     <div>
-                        <h1 className="text-2xl font-bold text-black-500">Data Training Configuration</h1>
+                        <h1 className="text-2xl font-bold text-black-500">Upload & Manage Training Q&A Configuration</h1>
 
                     </div>
                 </div>

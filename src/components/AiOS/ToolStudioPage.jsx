@@ -382,7 +382,7 @@ export const ToolStudioPage = ({ industry = 'Insurance' }) => {
             <div style={{ marginLeft: "0px", marginRight: "auto", width: "90%" }} className='flex flex-col h-full'>
                 <div className="flex gap-2 items-center">
                     <div>
-                        <h1 className="text-2xl font-bold text-black-500">Tool Studio Configuration</h1>
+                        <h1 className="text-2xl font-bold text-black-500">Data Model Configuration</h1>
                     </div>
                 </div>
                 <div className='heighligts my-4'>

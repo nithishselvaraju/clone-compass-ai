@@ -17,6 +17,8 @@ import SettingsTabs from './pages/SettingsTabs';
 import ModelTrainingTab from './components/ModelTrainingTabs/ModelTrainingTab';
 import AIOperatingSystemDashboard from './pages/newflow/AIOperatingSystemDashboard';
 import AIOSEnterpriseDashboard from './pages/newflow/AIOperatingSystemDashboard';
+import ModelTrainingList from './components/ModelTrainingTabs/ModelTrainingList';
+import { ApiPlaygroundPage } from './pages/playground/ApiPlayground';
 
 
 
@@ -69,6 +71,8 @@ function App() {
             <Route path="/rules-setup" element={<RulesSetupStep />} />
             <Route path="/model-details" element={<ModelDetails />} />
             <Route path="/aios" element={<AIOperatingSystemDashboard />} />
+            <Route path="/model-training" element={<ModelTrainingList />} />
+            <Route path="/api-playground" element={<ApiPlaygroundPage />} />
             {/* <Route path="/aios" element={<AIOSEnterpriseDashboard />} /> */}
             {/* <Route path="/clients" element={<Clients />} /> */}
           </Routes>
